@@ -1,0 +1,173 @@
+*{
+          padding: 0;
+          margin: 0;
+}
+.head-right-box button{
+          padding: 1.2rem;
+          background-color: var(--white);
+          margin-right: .5rem;
+          border: 2px solid var(--main-color);
+          cursor: pointer;
+          border-radius: .47rem;
+          /* color: var(--white); */
+}
+
+#modal-btn,#modal-btn_buy_other {
+          background-color: #4CAF50; 
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          /* margin: 20px; */
+          cursor: pointer;
+        }
+        .pick-btn{
+          background-color: var(--white); 
+          border: none;
+          color: var(--black);
+          padding: .7rem;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          /* margin: 20px; */
+          cursor: pointer;
+        }
+ #button1, #button2{
+  padding: .8rem;
+  border: 2px solid var(--main-color);
+  cursor: pointer;
+  background-color: var(--white);
+
+        
+}
+ /* #button3, #button4{
+          padding: .8rem;
+          border: 2px solid var(--main-color);
+          cursor: pointer;
+     
+} */
+.active{
+          /* background-color: var(--main-color); */
+          border-bottom: 3px solid var(--main-color);
+}
+.active1{
+          /* background-color: var(--main-color); */
+          border-bottom: 3px solid var(--main-color);
+
+}
+.active2{
+          /* background-color: var(--main-color); */
+          border-bottom: 3px solid var(--secondary);
+
+}
+.small-button{
+          padding: 1rem;
+          border-radius: .6rem;
+          margin: 0;
+
+}
+.small-button2{
+  padding: 1rem;
+  border-radius: .6rem;
+  margin: 0;
+  
+}
+#Buy{
+          padding: 1rem;
+          font-size: 1.5rem;
+          background-color: var(--done);
+          color: var(--white);
+          border: none;
+          margin: 0 .5rem;
+          cursor: pointer;
+          border-radius: .47rem;
+}
+#Buy:hover{
+          background-color: var(--main-color);
+          transition: 0.4s ease-in-out;
+}
+#cancel:hover{
+          background-color: var(--secondary);
+          transition: 0.4s ease-in-out;    
+}
+#cancel{
+          padding: 1rem;
+          font-size: 1rem;
+          background-color: var(--fail);
+          color: var(--white);
+          border: none;
+          margin: 0 .5rem; 
+          cursor: pointer;
+          border-radius: .47rem;
+}
+#proof-btn{
+  padding: .7rem;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: .47rem;
+  color: white;
+  width: 15%;
+  cursor: pointer;
+}
+.dispute-btn{
+  padding: .5rem;
+  background-color: var(--dispute);
+  border: none;
+  border-radius: .2rem;
+  color: var(--white);
+  margin: 1rem 0;
+  cursor: pointer;
+}
+.btn-proceed a button{
+  width: 100%;
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 1000px){
+
+
+  .pick-btn{
+    font-size: .6rem;
+  }
+
+  #modal-btn {
+    padding: .3rem .4rem;
+    font-size: .7rem;
+    margin: 0;
+  }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

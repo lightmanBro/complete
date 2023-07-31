@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="../setting/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3>Set your payment receiving account details</h3>
+        <div class="select-options">
+            <select name="payment-method" id="select">
+                <option>Select method to set</option>
+                <option name="bank" value="bank">Bank</option>
+                <option name="chipper" value="chipper">Chipper</option>
+                <option name="apple_pay" value="apple_pay">Apple pay</option>
+                <option name="momo" value="momo">Mobile money</option>
+                <option name="pi" value="pi">Pi network</option>
+                <option name="paypal" value="paypal">PayPal</option>
+                <option name="skrill" value="skrill">Skrill</option>
+                <!-- <option name="cashApp" value="cashApp">Cash App</option> -->
+                <option name="googlepay" value="googlepay">Google pay</option>
+            </select>
+        </div>
+        <div class="notice">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             Tempora magnam libero natus molestias, unde quis blanditiis ullam assumenda eum molestiae?</p>
+        </div>
+        <div class="input_containers">
+            <div class="form-container" id="bank">
+                <form id="bank_account_settings">
+
+                    <!-- Individual will be able to set their country of residence so that the data can accompany
+                    the bank details and it can be used to set the type of currency they want to accept in their bank. -->
+                    <div>Add Bank Details <span>Note: please use your own details</span></div>
+                    <input type="hidden" name="bank" value="bank">
+                        <hr>
+                        <label for="">Your Name</label>
+                        <input type="text" name="Account_name">
+                        <label for="">Bank</label>
+                        <input type="text" name="bank_name">
+                        <label for="">Account Number <span id="acc_warning">Please enter a valid Acc number</span></label>
+                        <input type="text" name="account_number" class="" id="acc_number">
+                        <button type="submit" id="acc_btn">Set Details</button>
+
+                </form>
+            </div>
+            <div class="form-container" id="chipper">
+                <form id="chipper_account_settings">
+                    <input type="hidden" name="chipper_acc" value="chipper">
+                    <div>Chipper cash Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">Your Name</label>
+                    <input type="text" name="user_name">
+                    <label for="">Account Number</label>
+                    <input type="email" name="chipper_mail">
+                    <button type="submit">Set Details</button>
+                </form>
+            </div>
+            <div class="form-container" id="apple">
+                <form id="apple_pay_account_settings">
+                    <input type="hidden" name="apple_acc" value="applepay">
+                    <div>Add Apple pay Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">Apple mail</label>
+                    <input type="email" name="apple_mail">
+                    <button type="submit">Set Apple mail</button>
+                </form>
+            </div>
+            <div class="form-container" id="momo">
+                <form id="momo_account_settings">
+                    <input type="hidden" name="momo_acc" value="momo">
+                    <div>Add Mobile money Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">Momo Name</label>
+                    <input type="text" name="momo_name">
+                    <label for="">Momo Number <span id="warning">Please enter a valid momo number</span></label>
+                    <input type="text" name="momo_number" class="" id="number_momo">
+                    <button type="submit" id="momo_btn">Set Momo Account</button>
+                </form>
+            </div>
+            <div class="form-container" id="pi">
+                <form id="pi_account_settings">
+                    <input type="hidden" name="pi_wallet" value="pi">
+                    <div>Add Pi Network Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">Pi (π) Wallet Address</label>
+                    <input type="text" name="wallet_address">
+                    <button type="submit">Set wallet Address</button>
+                </form>
+            </div>
+            <div class="form-container" id="paypal">
+                <form id="paypal_account_settings">
+                    <input type="hidden" name="paypal_acc" value="paypal">
+                    <div>Add PayPal Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">PayPal Email</label>
+                    <input type="email" name="paypal_email">
+                    <button type="submit">Set Paypal Address</button>
+                </form>
+            </div>
+            <div class="form-container" id="skrill">
+                <form id="skrill_account_settings">
+                    <input type="hidden" name="skrill_acc" value="skrill">
+                    <div>Add Skrill Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">Skrill Mail</label>
+                    <input type="email" name="skrill_mail">
+                    <button type="submit">Set Skrill Address</button>
+                </form>
+            </div>
+            <!-- <div class="form-container" id="cash">
+                <form id="cashApp_account_settings">
+                    <input type="hidden" name="cashapp_acc" value="cashApp">
+                    <div>Add Cash App Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">Your Name </label>
+                    <input type="text" name="cashapp_name">
+                    <label for="">Account Number</label>
+                    <input type="text" name="account_number">
+                    <button type="submit">Set Details</button>
+                </form>
+            </div> -->
+            <div class="form-container" id="google">
+                <form id="googlpay_account_settings">
+                    <input type="hidden" name="google_pay_acc" value="googlepay">
+                    <div>Add Google Pay Details <span>Note: please use your own details</span></div>
+                    <hr>
+                    <label for="">Google mail</label>
+                    <input type="email" name="google_mail">
+                    <button type="submit">Set google mail</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./settings.js"></script>
+</html>

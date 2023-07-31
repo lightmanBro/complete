@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2P</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="button.css">
+  <link rel="stylesheet" href="text.css">
+  <link rel="stylesheet" href="input.css">
+  <link rel="stylesheet" href="mobile.css">
+  <link rel="stylesheet" href="fontsawesome/css/all.css">
+  <style>
+    section.btn-o a button {
+      text-align: center;
+      width: fit-content;
+      padding: 20px;
+      background-color: aquamarine;
+      margin-right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <!-- <div class="head"> -->
+
+
+    <!-- <div class="mobile">
+
+  
+  <button id="button1" >P2P</button>
+                          
+                            
+  <button id="button2">ORDER</button>
+</div> -->
+
+
+  </header>
+  <main class="body1">
+    <div class="logo" id="logo">
+      <h2><a href="/payment gateway/index.html">
+          <img src="../img/colorLogo.png" alt="">
+        </a></h2>
+    </div>
+
+    <head>
+
+      <section class="btn-o"><a href="../create trade/create-trade.html"><button
+            type="button">Create Order</button></a></section>
+      <div class="banner">
+        <div class="banner-head-box">
+
+
+          <div class="banner-left" id="bankhead">
+            <button id="button3" class="active1 pick-btn">BUY</button>
+            <button id="button4" class="pick-btn" hidden>SELL</button>
+          </div>
+          <div class="banner-left1 content-list" id="bankhead1">
+            <button id="button0" class="active1 pick-btn">BUY</button>
+            <button id="button01" class="pick-btn" hidden>SELL</button>
+          </div>
+        </div>
+        <!-- <div class="p2p">
+          <button id="Buy1" class="active pick-btn">(&#x20A6;) NGN</button>
+          <button id="Buy2" class="pick-btn">($) USD</button>
+          <button id="Buy3" class="pick-btn">(&#163;) GPB</button>
+          <button id="Buy4" class="pick-btn">(&#x0052;) ZAR</button>
+          <button id="Buy5" class="pick-btn">(&#x20B5;) GHC</button>
+        </div> -->
+        <div class="banner-center">
+          <button id="Buy6" class="active pick-btn">PAY BY WALLET</button>
+           <button id="Buy7" class="pick-btn">OTHER METHOD</button>
+        </div>
+      </div>
+    </head>
+
+    <main id="content1">
+      <div class="check">
+        <div class="labe1">
+          <label for="">
+            <input type="search" placeholder="Amount">
+          </label>
+
+        </div>
+        <div class="labe1" id="label2">
+          <label for=""><span>Wallet </span> </label>
+          <select>
+            <option value=" NGN">(&#x20A6;) NGN</option>
+            <option value=" USD">($) USD</option>
+            <option value=" GPB">(&#163;) GPB</option>
+            <option value=" GHC">(&#x20B5;) GHC</option>
+            <option value=" ZAR">(&#x0052;) ZAR</option>
+          </select>
+        </div>
+
+      </div>
+      <section id="content1">
+        <div class="ngn">
+          <table>
+            <thead>
+              <th>Advertiser <span>Trade</span></th>
+              <th>Trades <span>Level</span></th>
+              <th>Limits <span>Highest to Lowest</span></th>
+              <th>Rate <span>High demand to Low</span></th>
+              <th>Proceed</th>
+            </thead>
+            <tbody id="PayByWallet">
+
+              <!-- Buy by wallet -->
+            </tbody>
+          </table>
+
+
+          <!-- BUY POPUP CONTAINER -->
+          <div class="popup-container" style="display: none;">
+            <div class="popup-content">
+
+              <form id="buy_wallet">
+                <div class="transaction">
+                  <div class="payment-method-head">
+                    <H4> PAY BY WALLET</H4>
+                    <p><span></span> <span></span></p>
+                  </div>
+                  <div class="payment-method-bank">
+                    <div class="name-details" id="my_wallet">
+                      <h4 >MY WALLET:</h4>
+                      <p> </p>
+                    </div>
+                    <div class="name-details" id="wallet_balance">
+                      <h4 >MY WALLET BALANCE:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="seller_wallet">
+                      <h4 >SELLER WALLET:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="low_limit">
+                      <h4 >Low limit:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="high_limit">
+                      <h4 >High limit:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="exchange_rate">
+                      <h4 >Exchange Rate:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details">
+                      <h4>PURCHASE Unit</h4><input type="tel" placeholder="" id="amount">
+                    </div>
+                    <div class="name-details" id="purchase_cost">
+                      <h4 >PURCHASE COST:</h4>
+                      <p> </p>
+                    </div>
+                    <div class="name-details" id="transaction_fee">
+                      <h4 >FEE 1%:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="receive_amount">
+                      <h4 >RECEIVE AMOUNT:</h4>
+                      <p></p>
+                    </div>
+                    <div class="btn-proceed">
+                      <button class="popup-confirm" id="buy_wallet_confirm">CONFIRM</button>
+                      <button type="reset" class="close-btn" id="buy_wallet_cancel" style="background-color: var(--secondary);">CANCEL</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+          <div class="popup-container-inner">
+            <div class="transaction">
+              <div class="popup-b">
+                <div class="payment-method-head">
+                  <H3>Transaction Details </H3>
+                  <div class="modal-content2">
+
+                    <div class="complete-card" id="complete-card">
+                      <!-- <i class="fa-solid fa-check"></i> -->
+                      <h2>Trade Completed</h2>
+                      <img src="./Tamo Pay Logo png 1.jpg" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="payment-method-bank">
+                  <div class="name-details">
+                    <h4>MY WALLET:</h4>
+                    <p>NAIRA WALLET</p>
+                  </div>
+                  <div class="name-details">
+                    <h4>SELLER:</h4>
+                    <p>USD WALLET</p>
+                  </div>
+                  <div class="name-details">
+                    <h4>PURCHASE</h4>
+                    <p>$100</p>
+                  </div>
+                  <div class="name-details">
+                    <h4> PRICE:</h4>
+                    <p> &#x20A6;74,000</p>
+                  </div>
+                  <div class="name-details">
+                    <h4>FEE 1%:</h4>
+                    <p>$1</p>
+                  </div>
+                  <div class="name-details">
+                    <h4>RECEIVE:</h4>
+                    <p>$99.00</p>
+                  </div>
+                  <div class="complete-card" id="complete-card">
+                    <h3>Transaction ID: #2187093564 </h3>
+                  </div>
+                  <div class="btn-proceed">
+                    <a href="">
+                      <button class="close-btn-inner" id="cancel-inner"> OK</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+
+
+    </main>
+    <main id="content2" hidden>
+      <div class="check">
+        <div class="labe1">
+          <label for="">
+            <input type="search" placeholder="Amount">
+          </label>
+
+        </div>
+        <div class="labe1">
+          <label for=""><span>Wallet </span> </label>
+          <select>
+            <option value="NGN">(&#x20A6;) NGN</option>
+            <option value="USD"> USD</option>
+            <option value="GPB"> GPB</option>
+            <option value="GHC"> GHC</option>
+            <option value="ZAR"> ZAR</option>
+          </select>
+        </div>
+      </div>
+
+
+      <!-- SELL CONTAINER -->
+      <section id="content1">
+        <table>
+          <thead>
+            <th>Advertiser <span>Trade</span></th>
+            <th>Trades <span>Level</span></th>
+            <th>Limits <span>Highest to Lowest</span></th>
+            <th>Rate <span>High demand to Low</span></th>
+            <th>Proceed</th>
+          </thead>
+          <tbody id="sellByWallet">
+            <!-- The sales data will be posted here -->
+          </tbody>
+        </table>
+
+        <!-- Pop-up container for sell -->
+        <div class="popup-container" id="popup-container2" style="display: none;">
+          <div class="popup-content">
+              <form id="sell_wallet">
+                <div class="transaction">
+                  
+                  <div class="payment-method-bank">
+                    <div class="name-details" id="my_wallet">
+                      <h4 >MY WALLET:</h4>
+                      <p>GHC WALLET</p>
+                    </div>
+                    <div class="name-details" id="wallet_balance">
+                      <h4 >WALLET BALANCE:</h4>
+                      <p> <span></span></p>
+                    </div>
+                    <div class="name-details" id="seller_wallet">
+                      <h4 >SELLER WALLET:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="low_limit">
+                      <h4 >Low limit:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="high_limit">
+                      <h4 >High limit:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="exchange_rate">
+                      <h4 >Exchange Rate:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details">
+                      <h4>PURCHASE Unit</h4><input type="tel" placeholder="" id="amount">
+                    </div>
+                    <div class="name-details" id="purchase_cost">
+                      <h4 >PURCHASE COST:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="transaction_fee">
+                      <h4 >FEE 1%:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="receive_amount">
+                      <h4 >RECEIVE AMOUNT:</h4>
+                      <p></p>
+                    </div>
+                    <div class="btn-proceed">
+                      <button class="popup-confirm" id="sell_wallet_confirm">CONFIRM</button>
+                      <button type="reset" class="close-btn" id="sell_wallet_cancel" style="background-color: var(--secondary);">CANCEL</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup-container-inner1">
+          <div class="transaction">
+
+            <div class="popup-b">
+
+              <div class="payment-method-head">
+                <H3>Transaction Details </H3>
+                <div class="modal-content2">
+
+                  <div class="complete-card" id="complete-card">
+                    <!-- <i class="fa-solid fa-check"></i> -->
+                    <h2>Trade Completed</h2>
+                    <img src="./Tamo Pay Logo png 1.jpg" alt="">
+
+                  </div>
+                </div>
+              </div>
+              <div class="payment-method-bank">
+                <div class="name-details">
+                  <h4>MY WALLET:</h4>
+                  <p>GHC WALLET</p>
+                </div>
+                <div class="name-details">
+                  <h4>RECEIVER :</h4>
+                  <p> USD WALLET</p>
+                </div>
+
+                <div class="name-details">
+                  <h4>SOLD AMOUNT</h4>
+                  <p>&#x20B5;100</p>
+                </div>
+                <div class="name-details">
+                  <h4>RECEIVED AMOUNT:</h4>
+                  <p>$12.5</p>
+                </div>
+                <div class="complete-card" id="complete-card">
+                  <h3>Transaction ID: #2187093564 </h3>
+                </div>
+                <div class="btn-proceed">
+                  <button class="close-btn-inner1" id="cancel-inner"> OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <!-- BUY OTHER METHOD -->
+    <main id="content3" class="content-list">
+
+      <div class="check1" id="content3">
+        <div class="labe1">
+          <label for="">
+            <input type="search" placeholder="Amount" style="margin-top: 1.6rem;">
+          </label>
+
+        </div>
+        <div class="labe1" id="labe1b">
+          <label for="">Payment:</label> &nbsp;&nbsp;&nbsp;
+          <select>
+            <option value="Bank">Bank</option>
+            <option value="Mobile Money">Mobile Money</option>
+            <option value="Chipper Cash">Chipper Cash</option>
+            <option value="Pi Network">Pi Network</option>
+            <option value="Paypal">Paypal</option>
+          </select>
+        </div>
+        <div class="labe1">
+          <label for=""><span>Fiat:</span> </label>
+          <select>
+            <option value="NGN">NGN</option>
+            <option value="USD">USD</option>
+            <option value="GPB">GPB</option>
+            <option value="GHC">GHC</option>
+            <option value="ZAR">ZAR</option>
+          </select>
+        </div>
+      </div>
+
+<!-- BUY OTHER METHOD -->
+      <section id="content3">
+        <div class="ngn">
+          <table class="relative">
+            <thead>
+              <th>Advertiser <span>Trade</span></th>
+              <th>Trades <span>Level</span></th>
+              <th>Limits <span>Highest to Lowest</span></th>
+              <th>Rate <span>High demand to Low</span></th>
+              <th>Payment <span>Available Methods</span></th>
+              <!-- <th>Proceed</th> -->
+            </thead>
+            <tbody class="buy_other_methods">
+              <!-- The p2p data from the database will be posted here -->
+            </tbody>
+          </table>
+          <div class="popup-container4" id="popup-container4">
+            <div class="popup-content">
+              <form id="buy_other">
+                <div class="transaction">
+                  <div class="payment-method-head">
+                    <H4>OTHER PAYMENT METHODS</H4>
+                  </div>
+                  <div class="payment-method-head">
+
+                    <div class="methods">
+                      <div class="name-details">
+                        <h4>Bank name:</h4>
+                        <p>SPRING BANK</p>
+                      </div>
+                      <div class="name-details">
+                        <h4>Acc name:</h4>
+                        <p>ADEJUYI SAMSON J</p>
+                      </div>
+                      <div class="name-details">
+                        <h4>Account NO:</h4>
+                        <p>2187093564</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="payment-method-bank">
+                    <div class="name-details">
+                      <h4 id="my_wallet">MY WALLET:</h4>
+                      <p>GHC WALLET</p>
+                    </div>
+                    <div class="name-details" id="wallet_balance">
+                      <h4 >WALLET BALANCE:</h4>
+                      <p>500</p>
+                    </div>
+                    <div class="name-details">
+                      <h4 id="seller_wallet">SELLER WALLET:</h4>
+                      <p>USD WALLET</p>
+                    </div>
+                    <div class="name-details">
+                      <h4>PURCHASE Unit</h4><input type="tel" placeholder="" id="amount">
+                    </div>
+                    <div class="name-details">
+                      <h4 id="purchase_cost">PURCHASE COST:</h4>
+                      <p> &#x20A6;74,000</p>
+                    </div>
+                    <div class="name-details">
+                      <h4 id="transaction_fee">FEE 1%:</h4>
+                      <p>$1</p>
+                    </div>
+                    <div class="name-details">
+                      <h4 id="receive_amount">RECEIVE AMOUNT:</h4>
+                      <p>$99.00</p>
+                    </div>
+
+                    <div class="btn-proceed">
+                      <a href="verify.html">
+                        <button class="close-btn5" id="cancel-inner"> CONFIRM</button>
+                      </a>
+                      <button class="close-btn5" id="cancel" style="background-color: var(--secondary);">CANCEL</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+          </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- SELL OTHER METHODS -->
+    <main id="content4" class="content-list">
+      <div class="check1" id="content3">
+        <div class="labe1">
+          <label for="">
+            <input type="search" placeholder="Amount" style="margin-top: 1.6rem;">
+          </label>
+        </div>
+        <div class="labe1">
+          <label for="">Payment:</label> &nbsp;&nbsp;&nbsp;
+          <select>
+            <option value="Bank">Bank</option>
+            <option value="Mobile Money">Mobile Money</option>
+            <option value="Chipper Cash">Chipper Cash</option>
+            <option value="Pi Network">Pi Network</option>
+            <option value="Paypal">Paypal</option>
+            <option value="Stripe">Stripe</option>
+          </select>
+        </div>
+        <div class="labe1">
+          <label for=""><span>Fiat:</span> </label>
+          <select>
+            <option value="(&#x20A6;) NGN">(&#x20A6;) NGN</option>
+            <option value="($) USD">($) USD</option>
+            <option value="(&#163;) GPB">(&#163;) GPB</option>
+            <option value="(&#x20B5;) GHC">(&#x20B5;) GHC</option>
+            <option value="(&#x0052;) ZAR">(&#x0052;) ZAR</option>
+          </select>
+        </div>
+      </div>
+      <section id="content3">
+        <div class="ngn">
+          <table>
+            <thead>
+              <th>Advertiser <span>Trade</span></th>
+              <th>Trades <span>Level</span></th>
+              <th>Limits <span>Highest to Lowest</span></th>
+              <th>Rate <span>High demand to Low</span></th>
+              <th>Payment <span>Available Methods</span></th>
+              <th>Proceed</th>
+            </thead>
+            <tbody class="sell_other_methods">
+              <!--Sell other methods data will be posted here  -->
+            </tbody>
+          </table>
+
+          <!-- Sell other methods modal -->
+          <div class="popup-container5" id="popup-container5">
+            <div class="popup-content">
+                <form id="sell_wallet_other">
+                  <div class="transaction">
+                    <div class="payment-method-head">
+                      <H4>OTHER PAYMENT METHODS</H4>
+                    </div>
+                    <div class="payment-method-head">
+                      <div class="methods" id="method_display">
+                       
+                      </div>
+
+                    </div>
+
+                    <div class="payment-method-bank">
+                      <div class="name-details" id="my_wallet">
+                        <h4 >MY WALLET:</h4>
+                        <p>GHC WALLET</p>
+                      </div>
+                      <div class="name-details" id="wallet_balance">
+                        <h4 >WALLET BALANCE:</h4>
+                        <p>500</p>
+                      </div>
+                      <div class="name-details" id="seller_wallet">
+                        <h4 >SELLER WALLET:</h4>
+                        <p> </p>
+                      </div>
+                      <div class="name-details" id="exchange_rate">
+                        <h4 >Exchange Rate:</h4>
+                        <p> </p>
+                      </div>
+                      <div class="name-details">
+                        <h4>PURCHASE Unit</h4><input type="tel" placeholder="" id="amount">
+                      </div>
+                      <div class="name-details" id="purchase_cost">
+                        <h4 >PURCHASE COST:</h4>
+                        <p> </p>
+                      </div>
+                      <div class="name-details" id="transaction_fee">
+                        <h4 >FEE 1%:</h4>
+                        <p>$1</p>
+                      </div>
+                      <div class="name-details">
+                        <h4 >RECEIVE AMOUNT:</h4>
+                        <p>$99.00</p>
+                      </div>
+
+                      <div class="btn-proceed">
+                        <a href="verify.html">
+                          <button class="close-btn5" id="cancel-inner"> CONFIRM</button>
+                        </a>
+                        <button class="close-btn5" id="cancel" style="background-color: var(--secondary);">CANCEL</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              
+
+            </div>
+          </div>
+      </section>
+    </main>
+  </main>
+
+
+  <script src="../trade/script/main.js"></script>
+  <script type="module" src="../trade/script/safety.js"></script>
+  <script type="module" src="../trade/script/script.js"></script>
+  <script type="module" src="../trade/script/sell.js"></script>
+
+</body>
+
+</html>

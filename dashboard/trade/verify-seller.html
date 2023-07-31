@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>verify seller</title>
+  <link rel="stylesheet" href="./fontsawesome/css/all.css">
+  <link rel="stylesheet" href="verify.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="button.css">
+</head>
+
+<body>
+  <main>
+    <div class="proof">
+      <div class="proof-head">
+        <div class="logo" id="logo">
+          <h2><a href="/payment gateway/index.html">
+                  <img src="../img/colorLogo.png" alt="">
+              </a></h2>
+      </div>
+
+        <h3>VERIFY PROOF OF PAYMENT</h3>
+      </div>
+      <div class="proof-message">
+        <h4> Proof Of Payment Reciept</h4>
+        <p> <span>Preview Payment receipt for transaction to release funds</span></p>
+        <p>Note: <span>Failure to Confirm transaction proof will result in authomatic cancelation of the transaction
+            once timer is completed</span></p>
+
+      </div>
+
+      <div class="proof-upload">
+        <p>Please confirm the proof of payment before releasing trade</p>
+        <div class="proof-upload-file">
+          <div class="image-container">
+          </div>
+          <label for="file-upload" class="custom-file-upload">
+            <input id="file-upload" type="file" hidden />
+          </label>
+          <button id="uploadBtn">Upload proof</button>
+        </div>
+      </div>
+      <div class="proof-complete">
+        <!-- <button  id="proof-btn">Complete</button> -->
+        <!-- <button onclick="openModal()">Open Modal</button> -->
+        <div class="content-show" style="display: block;">
+
+          <div class="popup-b">
+            <div class="payment-method-head">
+
+              <h4>Transaction ID: #2187093564 </h4>
+              <h4>Trade Status: Pending </h4>
+              
+            </div>
+            <div class="payment-method-bank">
+              <div class="name-details">
+                <h4>BANK NAME:</h4>
+                <p>SPRING BANK</p>
+              </div>
+              <div class="name-details">
+                <h4>ACCNT NAME:</h4>
+                <p>ADEJUYI SAMSON J</p>
+              </div>
+              <div class="name-details">
+                <h4>ACCOUNT NO:</h4>
+                <p>2187093564</p>
+              </div>
+              <div class="name-details">
+                <h4>PURCHASE AMOUNT</h4>
+                <p>$100</p>
+              </div>
+              <div class="name-details">
+                <h4>PURCHASE COST:</h4>
+                <p>&#x20A6;74,000</p>
+              </div>
+              <div class="name-details">
+                <h4>FEE 1%:</h4>
+                <p>$1</p>
+              </div>
+              <div class="name-details">
+                <h4>RECEIVE AMOUNT:</h4>
+                <p>$99.00</p>
+              </div>
+
+            </div>
+
+            <div class="proof-btn1">
+              <button class="dispute-btn">Release Trade</button>
+
+              <a href="../create trade/dispute.html"><button class="dispute-btn" style="background-color: var(--fail);">Dispute Trade</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </main>
+
+
+  <script>
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+  </script>
+  <script src="upload.js"></script>
+</body>
+
+</html>

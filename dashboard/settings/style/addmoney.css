@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+
+:root{
+    --primaryColor :rgb(60, 245, 208);
+    --black:rgb(0, 0, 0);
+    --carton:#bdc3c77b;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    overflow-x: hidden;
+    font-size: 62.5%;
+    font-family:'lato','Roboto', sans-serif;
+}
+
+.add-money-modal{
+    
+    position: fixed;
+    position: absolute;
+    display: grid;
+    width: 100%;
+    margin: 0 auto;
+    /* gap: 1rem; */
+    grid-template-columns:70% 27%;
+    background-color: transparent;
+    animation: appear ease .25s;
+    
+    /* padding: 1rem; */
+    
+}
+@keyframes appear{
+    0%{
+        opacity: 0;
+    } 
+    25%{
+        opacity: .5;
+    }
+    50%{
+        opacity: .75;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.send-close-btn,.close-btn{
+    text-align: center;
+    /* display: block; */
+    width: 100%;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    /* box-shadow: .05rem .05rem .25rem .1rem #0808087d; */
+    padding: .5rem;
+}
+.send-close-btn:hover,.close-btn:hover{
+
+    animation: ease-in-out .5s;
+    /* background-color: rgb(250, 45, 45); */
+}
+
+.blank{
+height: inherit;
+width: 100%;
+
+/* background-color: aqua; */
+}
+@keyframes appear{
+    0%{
+        opacity: 0;
+    } 
+    25%{
+        opacity: .5;
+    }
+    50%{
+        opacity: .75;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.add-container{
+    margin-top: 2.5rem;
+    border: 2px solid #4D8FAC;
+    background-color: white;
+    padding: .5rem;
+    height: fit-content;
+    display: flex;
+    color: rgb(76, 76, 76);
+    flex-direction: column;
+    transition: appear ease 5s;
+    box-shadow: .05rem .05rem .25rem .07rem #0808087d;
+
+    /* justify-content: space-between; */
+}
+
+.add-container-top{
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    /* align-items: center; */
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    height: 2rem;
+    width: 100%;
+    padding: .5rem;
+    margin: auto;
+    font-size: 1rem;
+}
+.add-container{
+     transition: all .3s ease;
+}
+.add-container-body{
+    /* padding: 5rem; */
+    /* border: 1px solid red; */
+}
+.fund-wallet{
+    display: flex;
+    margin: 1rem 0;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+.add-container-body-top{
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.fund-wallet, .wallet-balance{
+    margin-top: .5rem;
+    font-size: 1.5rem;
+}
+
+.add-container-body-top, .add-container-body p{
+    font-size: 1rem;
+    
+}
+.add-container-body, .wallet-balance p{
+    padding: .5rem;
+}
+.amount{
+    /* border: 2px solid var(--carton); */
+    background-color: aliceblue;
+    border-radius: .25rem;
+    outline: none;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    /* height: 1.5rem; */
+}
+.forms{
+    display: flex;
+    flex-direction: column;
+    transition: appear ease 5s;
+    
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0;
+    } 
+    25%{
+        opacity: .5;
+    }
+    50%{
+        opacity: .75;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.form-btn{
+    width: 100%;
+    margin: auto;
+    border: 2px solid rgb(76, 76, 76);;
+    border-radius: .25rem;
+    background-color:  rgb(46, 204, 113);
+    font-weight: 600;
+    font-size: 1rem;
+    /* color: white; */
+    padding: 1rem;
+    border: none;
+    outline: none; 
+}
+.form-btn:hover{
+    transition: ease-in-out .25s;
+    /* transform: scaleY(1.1); */
+    background-color: rgb(46, 204, 133);
+    /* border-inline: 1px solid black; */
+    color: black;
+}
+/* ________________________ */
+.select{
+    margin: 1rem;
+    /* border: 1px solid red ; */
+    text-align: center;
+}
+.select select{
+    padding: .5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+option{
+    text-align: justify;
+    border: none;
+    outline: none;
+}
+
+.buttons{
+    display: flex;
+    gap: 1rem;
+    /* box-shadow: .05rem .05rem .25rem .1rem #0808087d; */
+
+}

@@ -1,0 +1,126 @@
+@media only screen and (max-width: 1000px){
+
+
+
+
+*{
+          padding: 0;
+          margin: 0;
+}
+aside{
+          display: none;
+}
+
+main{
+          margin: 0;
+          padding: 0;
+          width: 100%;
+}
+.firstheading{
+          padding: 0;
+          width: 100%;
+          /* border: 2px solid red; */
+}
+#menu{
+    display: none; 
+          position: fixed; 
+          z-index: 1; 
+          left: 0;
+          top: 0;
+          width: 70%;
+          height: 100%;
+          overflow: auto; 
+          background-color: white;
+}
+.content-bar{
+    background: white;
+}
+.menu-show{
+    /* border: 2px solid black; */
+    padding-left: .5rem;
+    height: 30%;
+}
+.menu-show i{
+    font-size: 2rem;
+    opacity: 9;
+    z-index: 8;
+    /* border: 2px solid green; */
+}
+
+#menu i{
+    font-size: 2rem;
+    color: black;
+    width: 60%;
+    z-index: 1;
+}
+h2{
+          font-size: 1rem;
+          font-weight: 700;
+      }
+      .profile{
+          height: 3rem;
+          width: 3rem;
+      }
+      .insights{
+          padding: .3rem;
+          margin: .5rem 0;
+      }
+      .heading{
+          padding: .3rem;
+      }
+#amount, #total{
+          font-size: 1rem;
+}
+.Add-funds{
+          padding: .2rem;
+          display: flex;
+          justify-content: center;
+          margin: 0;
+}
+#add-btn, #send-btn{
+          padding: .3rem;
+}
+#pair-to-pair{
+          padding: .6rem;
+}
+.dashboard{
+          padding: 0;
+          margin: 0;
+          display: flex;
+          font-size: 1.2rem;
+          justify-content: space-around;
+          width: 100%;
+      }
+
+.container{
+          display: block;
+          width: 100%;
+}
+tr{
+          font-size: .8rem;
+}
+td, th {
+          
+          text-align: left;
+          padding: .8rem;
+          color: rgb(76, 76, 76);
+          font-size: .8rem;
+          font-weight: 600;
+        }
+.sidebar a span, .sidebar a h3{
+    font-size: 1.3rem;
+}
+.circle{
+    padding: .3rem;
+}
+
+
+
+
+
+
+
+
+
+
+}

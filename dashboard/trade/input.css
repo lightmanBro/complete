@@ -1,0 +1,142 @@
+*{
+          padding: 0;
+          margin: 0;
+}
+.switch input {
+  display: none;
+}
+input:checked + .slider {
+  background-color: var(--off);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+#currency{
+          background-color: var(aliceblue);
+}
+.check input{
+          padding: .4rem;
+          background-color: var(--input);
+          border: 1px solid var(--main-color);
+          outline: none;
+          /* border-radius: .47rem; */
+}
+.check input:focus{
+  border-bottom: 1px solid var(--main-color);
+}
+.check1 input{
+          padding: .4rem;
+          background-color: var(--input);
+          /* border: 1px solid var(--main-color); */
+          border: none;
+          outline: none;
+          /* border-radius: .47rem; */
+}
+.check1 input:focus{
+  border-bottom: 1px solid var(--main-color);
+}
+.enter, .price, input{
+          width: 90%;
+}
+.check label{
+  text-align: center;
+}
+select {
+          padding: 1rem 6rem;
+          font-size: 16px;
+          border: none;
+          /* border-radius: 5px; */
+          background-color: var(--select);
+          color: #333;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+        
+        select:focus {
+          outline: none;
+        }
+        
+        select option {
+          background-color: var(--white);
+          color: #333;
+          font-size: 1.3rem;
+          
+        }
+        select option:hover{
+          background: var(--main-color);
+          color: var(--white);
+        }
+        
+        select option:checked {
+          background-color: var(--main-color);
+          color: var(--white);
+        }
+        
+
+        @media only screen and (max-width: 1000px){
+
+
+          .check input{
+            margin-top: .8rem;
+            padding: .4rem;
+            font-size: .9rem;
+            width: 50%;
+  }
+          .check1 input{
+            margin-top: .8rem;
+            padding: .4rem;
+            font-size: .9rem;
+            width: 60%;
+  }
+        
+  select {
+    padding: .8rem;
+    width: 100%;
+    font-size: .9rem;
+
+  }   
+  .check select{
+    width: 80%;
+  }
+  .check1 select{
+    width: 80%;
+  }
+        
+        
+        
+        }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

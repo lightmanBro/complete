@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'lato', 'roboto';
+}
+body{
+  background-color: var(--body);
+  font-size: 62.5%;
+}
+
+main{
+    margin: 2rem;
+}
+
+.pendingTrades:hover{
+  color: #FFFFFF;
+  background-color: rgb(46, 204, 113);
+  transition: all .25s;
+}
+.pendingTrades:active{
+  color: #FFFFFF;
+  background-color: rgb(31, 135, 74);
+  transition: all .25s;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  .button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #FFFFFF;
+    width: 100%;
+    /* height: 44px; */
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+    text-align: center;
+    color: rgb(46, 204, 113);
+    transition: 0.1s ease-in-out;
+    margin-bottom: 50px;
+    border: 1px solid rgba(62, 137, 20, 0.6);
+  }
+  
+  .button.active {
+    background-color: rgb(46, 204, 113);
+    color: #FFFFFF;
+  }
+
+
+section.btn-o {
+   text-align: right;
+}
+
+section button{
+    float: right;
+    background: rgb(46, 204, 113);
+    border-radius: .25rem;
+    width: 13.9rem;
+    height: 3rem;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-align: center;
+    color: #FFFFFF;
+    transition: 0.1s ease-in-out;
+    margin-bottom: 50px;
+}
+
+/* tABLEsection */
+.table-section-o table{
+    border-collapse: separate;
+    width: 100%;
+    border-radius: 4.56604px;
+    border-spacing: 1rem;
+  }
+  .table-section-o thead{
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .table-section-o th {
+    text-align: center;
+    color: black;
+    padding: 20px;
+    /* border: 1px solid rgba(62, 137, 20, 0.6); */
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    width: 20%;
+  }
+  
+
+
+  .table-section-o th.active {
+    background-color: rgb(46, 204, 113);
+    color: white;
+  }
+  
+  .table-section-o table th i {
+    margin-right: 10px;
+  }
+  .table-section-o tr{
+    padding: 0;
+    margin: 1rem 0;
+    
+  }
+  .table-section-o td{
+    font-size: 28rem;
+  }
+  
+  .table-content {
+    display: none;
+    width: 100%;
+  }
+  
+  .table-content.show {
+    /* display: block; */
+    text-align: left;
+    font-style: normal;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    color: black;
+    display: table-cell;
+    /* width: 100%; */
+  }
+
+  .table-info h4{
+    margin-bottom: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+  }
+
+  .table-info h4 span.green-text{
+    color: #5EA536;
+    font-size: 1.25rem;
+  }
+
+  .table-info h4 span.text-faded{
+    color: rgb(70, 69, 69);
+  }
+
+  .table-info h4 button{
+    background: #5EA536;
+    width: 100px;
+    height: 25px;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    color: #FFFFFF;
+    margin:0 1rem;
+  }
+.table-info{
+  border: 1px solid #5EA536;
+  padding: 35px;
+  margin: 1rem 0;
+  border: none;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+}
+
+
+
+
+
+
+
+  @media only screen and (max-width: 1000px) {
+   
+    main {
+        margin: 0;
+    }
+
+    .table-section{
+        margin: 0;
+        padding: 0;
+    }
+
+   .table-section-o table th span{
+      display: none;
+    }
+
+    .button-container{
+      margin: 0;
+      width: 100%;
+    }
+
+    section button{
+      margin: 1rem;
+    }
+    .button{
+      margin: 1rem 0;
+      width: 90%;
+    }
+    section.btn-o {
+      text-align: center;
+      width: 100%;
+   }
+    section button{
+      
+      float: none;
+      width: 40%;
+     
+  }
+  .table-section-o table{
+    width: 100%;
+    border-spacing: .3rem;
+  }
+  .table-section-o thead{
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    width: 60%;
+    margin-bottom: 1rem;
+  }
+  .table-section-o th {
+    padding: .5rem;
+   
+    width: 20%;
+  }
+  .table-section-o table th i {
+    margin-right: 0;
+  }
+
+  .table-content {
+    display: none;
+    width: 80%;
+  }
+.table-info{
+  display: flex;
+  border: 1px solid #5EA536;
+  padding: 1rem;
+  width: fit-content;
+  margin: auto;
+  border: none;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

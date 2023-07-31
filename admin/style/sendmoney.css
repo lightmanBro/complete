@@ -1,0 +1,267 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+
+:root{
+    --primaryColor :rgb(60, 245, 208);
+    --black:rgb(0, 0, 0);
+    --carton:#BDC3C7;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    overflow-x: hidden;
+    font-size: 62.5%;
+    font-family:'lato','Roboto', sans-serif;
+}
+
+.send-money-modal{
+    /* position: fixed; */
+    position: absolute;
+    display: grid;
+    width: 100%;
+    margin: 0 auto;
+    grid-template-columns:70% 27%;
+    animation: appear ease .25s;
+    border-radius: .25rem;
+}
+
+.blank{
+height: inherit;
+width: 100%;
+/* background-color: aqua; */
+}
+@keyframes appear{
+    0%{
+        opacity: 0;
+    } 
+    25%{
+        opacity: .5;
+    }
+    50%{
+        opacity: .75;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.send-container{
+    background-color: white;
+    padding: 1rem;
+    color: rgb(76, 76, 76);
+    margin-top: 2.5rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid grey;
+    animation: ease .5s;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    /* justify-content: space-between; */
+}
+
+.send-container-top{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    height: fit-content;
+    width: 100%;
+    padding: .5rem;
+    margin: auto;
+    font-size: 1rem;
+}
+
+.add-container-body{
+    /* padding: 5rem; */
+    /* border: 1px solid red; */
+}
+
+
+.fund-wallet{
+    display: flex;
+    margin: 1rem 0;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+.add-container-body-top{
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.fund-wallet, .wallet-balance{
+    margin-top: .5rem;
+    font-size: 1.5rem;
+}
+
+.add-container-body-top, .add-container-body p{
+    font-size: 1rem;
+}
+.add-container-body, .wallet-balance p{
+    padding: .5rem;
+}
+.amount{
+    border: 2px solid black;
+    background-color: aliceblue;
+    border-radius: .25rem;
+    outline: none;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    /* height: 1.5rem; */
+}
+.forms{
+    display: flex;
+    flex-direction: column;
+    animation: appear .5s;
+}
+.send-form-btn{
+    width: 100%;
+    margin: auto;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem;
+    border: none;
+    outline: none;
+}
+.send-form-btn:hover{
+    transition: ease-in-out .25s;
+    transform: scaleY(1.1);
+    background-color: black;
+    /* background-color: #717375ac; */
+    color: white;
+}
+@keyframes appear{
+    0%{
+        opacity: 0;
+    } 
+    25%{
+        opacity: .5;
+    }
+    50%{
+        opacity: .75;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/* ________________________ */
+.select{
+    margin: 1rem;
+    /* border: 1px solid red; */
+    text-align: center;
+    /* padding: 1rem; */
+}
+.select select{
+    padding: .5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+.wallet-select{
+    font-size: 1.5rem;
+    background-color: aliceblue;
+}
+.send-inputs{
+     /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.send-inputs input{
+    width: inherit;
+    padding: .75rem;
+    margin: .5rem;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+.send-inputs .amount{
+    width: 50%;
+    border: 2px solid black;
+}
+label{
+    font-size: 1rem;
+}
+
+.confirm-details{
+    margin: .5rem;
+    /* border: 2px solid black; */
+    background-color: aliceblue;
+}
+.confirm-details p{
+    font-size: 1rem;
+    padding: .25rem;
+}
+.details{
+    padding: 2.5rem;
+
+}
+option{
+    /* text-align: justify; */
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+.buttons{
+    display: flex;
+    gap: 1rem;
+}
+
+/* Wallet to bank */
+.sel-cont{
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    background-color: aliceblue;
+    font-size: 1.5rem;
+}
+select.to-bank{
+    margin: auto;
+    height: 2.5rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+select.to-bank option{
+    width: inherit;
+    height: 2.5rem;
+    font-size: 1.25rem;
+    background-color: aliceblue;
+}
+
+.to-b .inpt input{
+    width: 100%;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    /* padding-inline: .5rem; */
+    font-size: 1rem;
+    height: 2.5rem;
+    /* background-color: #dedfdf9b; */
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #dedfdf9b;
+}
+.to-b .inpt input:focus{
+    border-bottom: 2px solid rgb(46, 204, 113);
+}
+input.bottom-border{
+    border-bottom: 2px solid #dedfdf9b;
+}
+
+input.bottom-border:focus{
+    border-bottom: 2px solid rgb(46, 204, 113);
+}

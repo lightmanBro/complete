@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+body {
+    font-family:'lato','Roboto', sans-serif; ;
+}
+
+.container{
+    /* display: flex; */
+    border: .2rem solid black;
+    width: fit-content;
+    margin: auto;
+    padding: 2.5rem;
+    margin: 5rem auto;
+    
+}
+.container h3{
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+    color: #4a49498e;
+}
+.select-options{
+    text-align: center;
+}
+select{
+    width: 70%;
+    padding: .5rem;
+    font-size: 2rem;
+    outline: none;
+    background-color: aliceblue;
+    color: #3939398e;
+}
+option{
+    padding: .5rem;
+    font-size: 2rem;
+    text-align: center;
+    background-color: aliceblue;
+    color:  #393939bf;
+    
+}
+.notice{
+    border: 2px solid #bdc3c77b;
+    width: inherit;
+    text-align: left;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    margin: 1rem;
+}
+.notice p{
+    /* padding: 5rem; */
+    margin: 1rem;
+}
+.form-container{
+    border: 2px solid #bdc3c77b;
+    padding: 5rem;
+    margin: 1rem;
+}
+
+form{
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+form input{
+    padding: .75rem;
+    font-size: 2rem;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #bdc3c77b;
+    background-color: aliceblue;
+}
+form input:focus{
+    border-bottom: 2px solid rgb(46, 204, 113);
+}
+
+label span{
+    font-size: 2rem;
+    color: tomato;
+}
+
+label, button{
+    margin: .5rem;
+}
+button{
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgb(46, 204, 113);
+    outline: none;
+    border: none;
+    padding: 1.5rem;
+    color: white;
+    font-weight: 600;
+}
+form div{
+    margin: .5rem;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #4a49498e;
+}
+form div span{
+    color: orange;
+    font-weight: 600;
+}

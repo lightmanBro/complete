@@ -1,0 +1,236 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+  background-color: var(--body);
+  font-family: 'roboto', 'lato';
+}
+
+main {
+  padding: 1rem 0;
+  margin: 1rem 5rem;
+  background-color: var(--white);
+}
+
+i {
+  font-size: 2rem;
+}
+
+.proof {
+  padding: 1rem 0;
+}
+
+.proof h3 {
+  font-size: 2rem;
+}
+
+.proof-message h4 {
+  font-size: 1.6rem;
+}
+
+.proof-message p {
+  font-size: 1.3;
+}
+
+.proof-upload p {
+  font-size: 1.2rem;
+}
+
+.proof-complete {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+a {
+  color: black;
+}
+
+.proof-head {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.proof-message {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.proof-message p {
+  width: 50%;
+  font-size: 1.3rem;
+}
+
+.proof-upload {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.proof-upload-file {
+
+  margin: 1rem 0;
+  font-size: 2rem;
+  /* font-weight: 400; */
+  color: #aaa;
+  text-align: center;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+}
+
+.proof-btn {
+  text-align: center;
+}
+
+.proof-upload-file input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.custom-file-upload img {
+  /* margin: 1rem 0; */
+  background-color: #ddd;
+  padding: 5rem;
+  box-sizing: border-box;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+.popup-b {
+
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-method-head {
+  text-align: center;
+}
+
+#payment-method1 {
+
+  padding: 10px 60px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--select);
+  color: #333;
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
+  margin: 1rem 0;
+  /* text-align: center; */
+}
+
+#payment-method1:focus {
+  outline: none;
+}
+
+.name-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: .8rem;
+}
+
+.name-details input {
+  width: 20%;
+}
+
+.btn-proceed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn-proceed button {
+  padding: .6rem 3rem;
+  margin: .5rem 0;
+  cursor: pointer;
+  background-color: var(--main-color);
+  border: none;
+  color: var(--white);
+}
+
+.content-show {
+  display: none;
+}
+
+.comment-trade {
+  display: none;
+}
+
+.comment-trade textarea {
+  background-color: var(--input);
+  outline: none;
+  font-size: 1rem;
+}
+
+/* REFIX */
+.image-container{
+  width: 15.5rem;
+  height: 12.5rem;
+}
+.image-container img{
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  main {
+    margin: 1rem 2rem;
+    padding: 0 2rem;
+  }
+
+  .proof h3 {
+    font-size: 1rem;
+  }
+
+  .proof-message h4 {
+    font-size: 1.6rem;
+  }
+
+  .proof-message p {
+    font-size: 1rem;
+    width: 100%;
+    padding-left: 1rem;
+  }
+
+  .proof-upload p {
+    font-size: 1rem;
+  }
+
+  i {
+    font-size: 1rem;
+  }
+
+  .proof-head {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+  }
+
+}

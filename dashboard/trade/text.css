@@ -1,0 +1,113 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body{
+  font-size: 62.5%;
+}
+.head-right-box h4 {
+  font-size: 1.3rem;
+}
+
+.head-left-box h4 {
+  font-size: 1.3rem;
+}
+
+.banner-center span,
+i,
+label,
+input {
+  font-size: 1.5rem;
+}
+
+td {
+  font-size: 1rem;
+}
+
+th Span {
+  background-color: var(--main-color);
+  padding: .2rem;
+  /* border-radius: .37rem; */
+  color: var(--white);
+  font-size: 1rem;
+}
+
+.fees h6 {
+  font-size: 1.2rem;
+  line-height: 2.3rem;
+}
+
+th {
+  font-size: 1.25rem;
+}
+
+td h3 i {
+  font-size: .6rem;
+}
+
+.modal-head h3 {
+  font-size: 1rem;
+}
+
+.modal-head i {
+  font-size: 1rem;
+  margin: 0 .5rem;
+}
+
+.transaction label {
+  font-size: 1rem;
+}
+
+.transaction i {
+  font-size: 1rem;
+  margin-right: .8rem;
+  margin-top: .8rem;
+}
+
+.complete-card i {
+  padding: 3rem;
+  background-color: var(--done);
+  color: var(--white);
+  border: 2px solid var(--done);
+  border-radius: 50%;
+  font-size: 8rem;
+  margin: 1rem;
+}
+
+.complete-card h2 {
+  font-size: 2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+
+
+  .banner-center span,
+  i,
+  label,
+  input {
+    font-size: .8rem;
+  }
+
+  td {
+    font-size: .5rem;
+  }
+
+  th Span {
+    display: none;
+    background-color: var(--main-color);
+    padding: .1rem;
+    border-radius: .37rem;
+    color: var(--white);
+  }
+
+  th {
+    font-size: .8rem;
+    padding: 1rem 0;
+  }
+
+  td h3 i {
+    font-size: .4rem;
+  }
+
+
+}

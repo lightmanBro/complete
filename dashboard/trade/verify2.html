@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./fontsawesome/css/all.css">
+  <link rel="stylesheet" href="verify.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="button.css">
+</head>
+
+<body>
+  <main>
+    <div class="proof">
+      <div class="proof-head">
+        <div class="home">
+          <a href="./trade.html"> <i class="fa-solid fa-house"></i> </a>
+        </div>
+
+        <h3>VERIFY PROOF OF PAYMENT</h3>
+      </div>
+      <div class="proof-message">
+        <h4>Upload Proof Of Payment</h4>
+        <p> <span>Upload Payment receipt for transaction to be authomatically confirm</span></p>
+        <p>Note: <span>Failure to Upload transaction proof will result in authomatic canceling of the transaction</span>
+        </p>
+
+      </div>
+      <div class="content-show1" id="myModal11" style="display: block;">
+
+        <div class="popup-b">
+          <div class="payment-method-head">
+
+            <h4>Transaction ID: #2187093564 </h4>
+            <h4>Trade Status: Pending </h4>
+
+          </div>
+          <div class="payment-method-bank">
+            <div class="name-details">
+              <h4>BANK NAME:</h4>
+              <p>SPRING BANK</p>
+            </div>
+            <div class="name-details">
+              <h4>ACCNT NAME:</h4>
+              <p>ADEJUYI SAMSON J</p>
+            </div>
+            <div class="name-details">
+              <h4>ACCOUNT NO:</h4>
+              <p>2187093564</p>
+            </div>
+            <div class="name-details">
+              <h4>PURCHASE AMOUNT</h4>
+              <p>$100</p>
+            </div>
+            <div class="name-details">
+              <h4>PURCHASE COST:</h4>
+              <p>&#x20A6;74,000</p>
+            </div>
+            <div class="name-details">
+              <h4>FEE 1%:</h4>
+              <p>$1</p>
+            </div>
+            <div class="name-details">
+              <h4>RECEIVE AMOUNT:</h4>
+              <p>$99.00</p>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="proof-upload">
+          <p>Please Upload the paid receipt for this transaction to be completed</p>
+          <div class="proof-upload-file">
+
+            <label for="file-upload" class="custom-file-upload">
+              <img src="" alt="Upload" />
+            </label>
+            <input id="file-upload" type="file" name="file" required />
+          </div>
+        </div>
+        <div class="proof-complete">
+          <button onclick="openModal()" class="dispute-btn"
+            style="background-color: var(--main-color);">Complete</button>
+          <div class="content-show" id="myModal">
+
+            <div class="popup-b">
+
+              <div class="payment-method-bank">
+
+                <div class="btn-proceed">
+                  <button>Summon Seller</button>
+                </div>
+              </div>
+
+              <div class="proof-btn1">
+                <button class="dispute-btn">Dispute Trade</button>
+
+                <button onclick="openModal1()" class="dispute-btn" style="background-color: var(--fail);">Cancel
+                  Trade</button>
+              </div>
+            </div>
+          </div>
+          <div class="comment-trade" id="myModal1">
+            <textarea name="" id="" cols="30" rows="10"
+              placeholder="Please type reasons for canceling trade"></textarea>
+
+          </div>
+  </main>
+
+
+  <script>
+
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+    function openModal1() {
+      document.getElementById("myModal1").style.display = "block";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Trade</title>
+  <link rel="stylesheet" href="create.css">
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="fontsawesome/css/all.css">
+
+</head>
+
+<body>
+  <div class="logo" id="logo">
+    <h2><a href="/payment gateway/index.html">
+        <img src="../img/colorLogo.png" alt="">
+      </a></h2>
+  </div>
+
+  <section>
+
+    <div class="head-content-c">
+      <button class="btn-c active" id="buy_btn">Buy</button>
+      <button class="btn-c " id="sell_btn" >Sell</button>
+    </div>
+
+
+
+    <section id="buy_post">
+      <main class="sell" id="buy_container">
+        <input type="hidden" id="trade_type" value="buy">
+        <div class="sell_header">
+          <button id="buy_wallet">Buy to wallet</button>
+          <button id="buy_other">Buy to Other methods</button>
+        </div>
+        <hr>
+
+        <div class="wallet" id="wallet_method_buy">
+          <form id="trade_post_buy_wallet">
+            <div class="content-c" id="buy">
+              <p>WALLET TO WALLET </p>
+            </div>
+
+            <div class="currency-c">
+              <div class="assest-c">
+                <div class="labe1-c">
+                  <div class="payment_proceed">
+                    <div class="payment-method-c">
+                      <button class="btn-c active" id="dropbtn">Wallet from</button>
+                    </div>
+                  </div>
+                  <select class="wallet-select select" id="buy_wallet_select">
+                    <option value="" id="available_curr">Select Wallet</option>
+                    <!--Data from the database will be shown here  -->
+
+                  </select>
+                </div>
+
+                <div>
+                  <div class="payment_proceed">
+                    <div class="payment-method-c">
+                      <button class="btn-c active" id="dropbtn">Wallet to</button>
+                    </div>
+                  </div>
+                  <div class="method_a">
+                    <select class="wallet-select" id="wallet_to_receive">
+                      <option value="Rand">ZAR</option>
+                      <option value="Cedi">GHC</option>
+                      <option value="Dollar">USD</option>
+                      <option value="Naira">NGN</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="buy_wallet_value_display">
+              <span></span>
+            </div>
+
+
+            <div class="value-c-1">
+              <div class="price-c">
+                <label for="">Your Rate</label>
+                <input id="wallet_buying_rate" type="tel" maxlength="5">
+              </div>
+              <div class="rate-c">
+                <label for="">Market Rate</label>
+                <!-- the Api will fetch the current market rate and use it to calculate the transaction -->
+                <span class="exchange_rate">
+                  N705
+                </span>
+              </div>
+            </div>
+            <div class="order-limit-c">
+              <p>Buy Limit</p>
+              <div class="lowest-order-c">
+                <input type="tel" placeholder="Lowest" id="wallet_low_limit">
+              </div>
+
+
+              <div class="highest-order-c">
+                <input type="tel" placeholder="highest" id="wallet_high_limit">
+              </div>
+            </div>
+            <div class="ammount-c">
+              <label for="">Receive</label>
+              <!-- Based on calculation of the current exchange rate and the API result -->
+              <!-- Display the realtime calculations of the input values -->
+              <div class="buy_receive_value_display">
+                <span></span>
+              </div>
+
+            </div>
+            <hr>
+            <div class="post-btn">
+              <button id="wallet_submit" class="btn-1">POST</button>
+              <button type="reset" id="wallet_cancel" class="btn-1 cancel">CANCEL</button>
+            </div>
+          </form>
+        </div>
+
+
+
+
+
+        <!-- other method -->
+        <div class="other" id="other_method_buy">
+          <form id="trade_post_buy_other">
+            <div class="content-c" id="buy">
+              <p>Wallet to Other </p>
+            </div>
+            <div class="currency-c">
+              
+              <div class="assest-c">
+                <div class="symbol-c">
+                  <label for="">Wallet from</label> &nbsp;&nbsp;&nbsp;
+                  <select class="wallet-select select" id="other_buy_select">
+                    <option value="" id="other_available_curr">Select Wallet</option>
+                    <!--Data from the database will be shown here  -->
+
+                  </select>
+                </div>
+                <div class="symbol-c">
+                  <label for="">Wallet to</label> &nbsp;&nbsp;&nbsp;
+                  <select class="wallet-select select" id="buy_select_wallet_to">
+                    <option value="" id="buy_other_available_curr">Select Wallet</option>
+                    <!--Data from the database will be shown here  -->
+
+                  </select>
+                </div>
+
+                <div class="symbol-c">
+                  <label for="payment_methods">Select Method:</label>
+                  <select id="other_payment_methods">
+                    <!-- Dynamic data from database will be shown here -->
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="buy_other_value_display">
+              <span></span>
+            </div>
+            <div class="value-c-1">
+              <div class="price-c">
+                <label for="">Your Rate</label>
+                <input id="other_buying_rate" type="tel" maxlength="5">
+              </div>
+              <div class="rate-c">
+                <label for="">Market Rate</label>
+                <!-- the Api will fetch the current market rate and use it to calculate the transaction -->
+                <span class="exchange_rate">
+                  N705
+                </span>
+              </div>
+            </div>
+
+            <div class="order-limit-c">
+              <p>Buy Limit</p>
+              <div class="lowest-order-c">
+                <input type="tel" placeholder="Lowest" id="other_low_limit">
+              </div>
+
+
+              <div class="highest-order-c">
+                <input type="tel" placeholder="highest" id="other_high_limit">
+              </div>
+            </div>
+
+            <div>
+              <div>
+                <div class="ammount-c">
+                  <label for="">Receive</label>
+                  <!-- Based on calculation of the current exchange rate and the API result -->
+                  <!-- Display the realtime calculations of the input values -->
+                  <div class="buy_other_value_display">
+                    <span></span>
+                  </div>
+
+                </div>
+                <hr>
+                <!--  -->
+              </div>
+            </div>
+
+            <div class="post-btn">
+              <button type="submit" id="buy_other_submit" class="btn-1">POST</button>
+              <button type="reset" id="buy_other_cancel" class="btn-1 cancel">CANCEL</button>
+            </div>
+          </form>
+        </div>
+      </main>
+      <div class="success">
+        <h3>Successful Posted P2P</h3>
+        <div class="posted_display">
+          <!-- Dynamic Data will be displayed here -->
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Refixed display -->
+    <section id="sell_post">
+      <main class="sell" id="sell">
+        <div class="sell_header">
+          <button id="sell_wallet" class="orange">Sell to wallet</button>
+          <button id="sell_other" class="orange">Sell to Other methods</button>
+        </div>
+        <hr>
+
+        <div class="wallet" id="wallet_method_sell">
+          <form id="trade_post_sell">
+            <div class="content-c" id="buy">
+              <p>WALLET TO WALLET </p>
+            </div>
+
+            <div class="currency-c">
+              <div class="assest-c">
+                <div>
+                  <div class="payment_proceed">
+                    <button class="btn-c active" id="dropbtn">Wallet From</button>
+                  </div>
+                  <div class="sumbol-c">
+                    <select class="wallet-select select" id="sell_wallet_select">
+                      <option value="" id="sell_available_curr">Select Wallet</option>
+                      <!--Data from the database will be shown here  -->
+  
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="payment_proceed">
+                    <button class="btn-c active" id="dropbtn">Wallet to</button>
+                  </div>
+      
+                  <div class="method_a">
+                    <select class="wallet-select" id="sell_wallet_to_receive">
+                      <option value="Rand">ZAR</option>
+                      <option value="Cedi">GHC</option>
+                      <option value="Dollar">USD</option>
+                      <option value="Naira">NGN</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="buy_other_value_display sell_wallet_value_display">
+                    <span></span>
+              </div>
+
+            <div class="value-c-1">
+              <div class="price-c">
+                <label for="">Your Rate</label>
+                <input id="wallet_selling_rate" type="tel" maxlength="5">
+              </div>
+              <div class="rate-c">
+                <label for="">Market Rate</label>
+                <!-- the Api will fetch the current market rate and use it to calculate the transaction -->
+                <span class="exchange_rate">
+                  N705
+                </span>
+              </div>
+            </div>
+
+            <div class="order-limit-c">
+              <p>Buy Limit</p>
+              <div class="lowest-order-c">
+                <input type="tel" placeholder="Lowest" id="sell_wallet_low_limit">
+              </div>
+
+
+              <div class="highest-order-c">
+                <input type="tel" placeholder="highest" id="sell_wallet_high_limit">
+              </div>
+            </div>
+            <div class="ammount-c">
+              <label for="">Receive</label>
+              <!-- Based on calculation of the current exchange rate and the API result -->
+              <!-- Display the realtime calculations of the input values -->
+              <div class="buy_other_value_display" id="sell_wallet_receive">
+                <span></span>
+              </div>
+
+            </div>
+            <hr>
+           
+            <div class="post-btn">
+              <button type="submit" id="sell_wallet_submit" class="btn-1">POST</button>
+              <button type="reset" id="sell_wallet_cancel" class="btn-1 cancel">CANCEL</button>
+            </div>
+          </form>
+
+        </div>
+
+
+        <!-- other method -->
+        <div class="other" id="other_method_sell">
+          <form id="wallet_sell_other">
+            <div class="currency-c">
+              <div class="assest-c">
+
+                <div class="labe1-c">
+                  <label for="">Wallet from</label> &nbsp;&nbsp;&nbsp;
+                  <select class="wallet-select select" id="sell_other_select">
+                    <option value="" id="sell_other_available_curr">Select Wallet</option>
+                    <!--Data from the database will be shown here  -->
+
+                  </select>
+                </div>
+                <div class="symbol-c">
+                  <label for="">Wallet to</label> &nbsp;&nbsp;&nbsp;
+                  <select class="wallet-select select" id="sell_other_select_to">
+                    <option value="" id="sell_other_available_curr_to">Select Wallet</option>
+                    <!--Data from the database will be shown here  -->
+
+                  </select>
+                </div>
+                <div>
+                      <div class="symbol-c">
+                        <label for="sell_other">Payment methods</label>
+                        <select id="sell_other_payment_methods">
+                          
+                        </select>
+                      </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="buy_other_value_display sell_other_value_display">
+              <span></span>
+            </div>
+
+            <div class="value-c-1">
+              <div class="price-c">
+                <label for="">Your Rate</label>
+                <input id="sell_other_selling_rate" type="tel" maxlength="5">
+              </div>
+              <div class="rate-c">
+                <label for="">Market Rate</label>
+                <!-- the Api will fetch the current market rate and use it to calculate the transaction -->
+                <span class="exchange_rate">
+                  N705
+                </span>
+              </div>
+            </div>
+            <div class="order-limit-c">
+
+              <label for="sell">Buy Limit</label>
+              <div class="lowest-order-c">
+                <input type="tel" placeholder="Lowest" id="sell_other_low_limit">
+              </div>
+              <div class="highest-order-c">
+                <label for="sell"></label>
+                <input type="tel" placeholder="highest" id="sell_other_high_limit">
+              </div>
+            </div>
+            <div class="ammount-c">
+              <label for="">Receive</label>
+              <!-- Based on calculation of the current exchange rate and the API result -->
+              <!-- Display the realtime calculations of the input values -->
+              <div class="buy_other_value_display">
+                <span></span>
+              </div>
+
+            </div>
+            <hr>
+            
+            <div class="post-btn">
+              <button type="submit" id="sell_other_submit" class="btn-1">POST</button>
+              <button type="reset" id="sell_other_cancel" class="btn-1 cancel">CANCEL</button>
+            </div>
+          </form>
+        </div>
+      </main>
+      <div class="sell_success" style="display: none;">
+        <h3>Successful Posted P2P</h3>
+        <div class="sell_posted_display">
+          <!-- Dynamic Data will be displayed here -->
+        </div>
+      </div>
+    </section>
+
+    <script src="new_trade.js"></script>
+    <script src="buttons.js"></script>
+</body>
+
+</html>
