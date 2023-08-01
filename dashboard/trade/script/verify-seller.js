@@ -1,24 +1,33 @@
 //Connected to 
-
-let orderRef = sessionStorage.getItem('sellOrderRef');
+//gotten from the orderActions page;
+let orderRef = sessionStorage.getItem('buyOrderRef');
 let buyerId,wallet_to_receive,unit,rate,wallet_to_remove_from;
 document.querySelector('#ref').innerHTML = orderRef;
 
 
 //To get available order details
+// document.addEventListener('DOMContentLoaded')
 async function getOrderDetails(url){
     const ref = new FormData();
     ref.append('order_refrence',orderRef)
     try {
         await fetch(url,{ method: "POST", body: ref })
-      .then(response=>response.json())
-      .then(data=>OrderData(data))
+      .then(response=>response.text())
+      .then(data=>{
+        console.log(data,orderRef);
+        OrderData(data)
+      })
     } catch (error) {
       console.log(error);
     }
   }
 const url =  '../php/orderActions/order-release.php'
-getOrderDetails(url);
+
+setTimeout(() => {
+  getOrderDetails(url);
+}, 1000);
+
+
 // console.log(orderRef);
 // console.log('From verify seller')
 
@@ -107,23 +116,25 @@ async function releaseOrder(url,dataS){
     }
 }
 
-
-
-
 //To get the proof image as per this order from the database;
 async function proofImages(url){
+  let ref = new FormData();
+  ref.append('order_refrence',orderRef);
+  console.log(orderRef);
     try {
-        await fetch(url)
+        await fetch(url,{method: "POST", body: ref})
         .then(response=>response.json())
-        .then(data=>{console.log(data)
+        .then(data=>{console.log(data,orderRef)
         let {buyer,path,order_ref} = data;
         //Set the image as the src images of this img container
         document.querySelector('#proofImage').setAttribute('src',`../php/upload/proofImg/${path}`);
         })
         
     } catch (error) {
-        
+        console.log(error)
     }
 }
 
-proofImages('../php/orderActions/check_proof.php');
+// document.querySelector('#check_image').addEventListener('click',(e)=>{
+// })
+proofImages('../php/orderActions/check_proof.php'); 

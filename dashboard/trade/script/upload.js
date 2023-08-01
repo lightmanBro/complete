@@ -7,6 +7,7 @@ let orderRef = sessionStorage.getItem('buyOrderRef');
 console.log(orderRef);
 document.querySelector('#ref').innerHTML = orderRef;
 // ////////////////////////////////////
+/*To get the order details from the database using the order_refrence*/
 async function getOrderDetails(url){
   const ref = new FormData();
   ref.append('order_refrence',orderRef)
@@ -26,6 +27,7 @@ let sellerId;
 function OrderData(data) {
   console.log(data.order);
   let {seller_id,exchange_rate,order_unit,payment_method,wallet,wallet_to,date}= data.order;
+  console.log(seller_id);
   wallet_to_receive = wallet;
   wallet_to_remove_from = wallet;
   wallet_to_receive = wallet_to;
@@ -60,7 +62,7 @@ function OrderData(data) {
   </div>
   <div class="name-details">
     <h4>Expected Amount:</h4>
-    <p>${order_unit/exchange_rate} ${wallet_to}</p>
+    <p>${order_unit*exchange_rate} ${wallet_to}</p>
   </div>
   <div class="name-details">
     <h4>DateTime</h4>
@@ -69,7 +71,7 @@ function OrderData(data) {
 </div>`
 document.querySelector('#orderData').insertAdjacentHTML('beforeend',html);
 }
-
+console.log(sellerId);
 ///////////////////////////////////////
 
 document.querySelector('input').addEventListener('change',(e)=>{
@@ -137,14 +139,17 @@ function compressAndUpload() {
             console.log(data);
             
             //Create an img element
-            let img = document.createElement('img')
-            //Set attribute of the image as the userId and transaction ref
-            img.setAttribute('src',`../php/upload/proofImg/${data.img}`);
-            document.querySelector('.image-container').appendChild(img);
-            //Show succesfull message
-              document.querySelector('#success').style.display = 'block';
-              document.querySelector('#success').innerHTML = `${data.Success} 😊 receipt sent to ${data.receiver}`;
-              document.querySelector('#modalbtn').click();
+            if(data.img){
+
+              let img = document.createElement('img')
+              //Set attribute of the image as the userId and transaction ref
+              img.setAttribute('src',`../php/upload/proofImg/${data.img}`);
+              document.querySelector('.image-container').appendChild(img);
+              //Show succesfull message
+                document.querySelector('#success').style.display = 'block';
+                document.querySelector('#success').innerHTML = `Transaction 😊 receipt sent to ${data.receiver}`;
+                document.querySelector('#modalbtn').click();
+            }
           })
           .catch((error) => {
             setTimeout(() => {

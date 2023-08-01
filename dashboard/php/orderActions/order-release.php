@@ -6,11 +6,10 @@ require('../server.php');
 // session_start();
 $accountOwner = $_SESSION['user_id'];
 $data = array();
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($_POST['order_refrence']) {
         $order_refrence = $_POST['order_refrence'];
         // Use prepared statements to prevent SQL injection
-        $stmt = "SELECT * FROM `p2p_order` WHERE `transaction_refrence` = ? AND seller_id = ?";
+        $stmt = "SELECT * FROM `p2p_order` WHERE `post_refrence` = ? AND seller_id = ?";
         $stmt2 = $conn->prepare($stmt);
         $stmt2->bind_param("si", $order_refrence, $accountOwner);
         $stmt2->execute();
@@ -23,7 +22,5 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             }
         }
     }
-}
-
 echo json_encode($data);
 ?>

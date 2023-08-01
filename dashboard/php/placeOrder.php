@@ -28,7 +28,15 @@ function clean_Input($userInpt)
 $accountOwner = $_SESSION['user_id'];
 
 // Generate a unique order reference number
+$refrence = substr(md5(uniqid(rand(), true)), 0, 20);
+            $stmt = $conn->prepare("SELECT COUNT(*) as count FROM p2p_order WHERE post_refrence = ?");
+            $stmt->bind_param('s', $refrence);
+            $stmt->execute();
+            $stmt->bind_result($count);
+            $stmt->fetch();
+            $stmt->close();
 $refrence = substr(md5(uniqid(rand(), true)), 0, 25);
+
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     $response = array("failed" => "", "Success" => "");
@@ -46,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $orderRef = clean_Input($_POST['order_ref']);
         $OrderCost = $orderUnit * $exchangeRate;
         $transactionFee = removeFee($sellerWallet, $orderUnit) * $OrderCost;
-        $type = "Buy Other";
+        $type = "Sell";
 
         // Check the p2p values to see if the order cost is within the specified limits
         $check = $conn->prepare("SELECT `lowest_rate`, `highest_rate` FROM `p2p_post_buy_other_method` WHERE user_id = ? AND buy_other_refrence = ?");
@@ -58,9 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         // TODO: Handle different cases for buyOther type transaction
         if ($OrderCost >= $low && $OrderCost <= $high) {
-            $stmt = $conn->prepare("UPDATE p2p_post_buy_other_method SET highest_rate = highest_rate - ? WHERE `user_id` = ? AND `buy_other_refrence` = ?");
-            $stmt->bind_param('dsd', $OrderCost, $sellerId, $orderRef);
-            $removed = $stmt->execute();
 
             //TODO: Implement the rest of the buyOther transaction logic here
             $placeOrder = $conn->prepare("INSERT INTO `p2p_order`(
@@ -72,11 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             `payment_method`, 
             `order_unit`, 
             `exchange_rate`, 
-            `transaction_refrence`,
+            `post_refrence`,
+            `order_refrence`,
             `transaction_fee`)
-             VALUES (?,?,?,?,?,?,?,?,?,?)");
+             VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             $placeOrder->bind_param(
-                'iissssiiss',
+                'iissssiisss',
                 $sellerId,
                 $accountOwner,
                 $type,
@@ -86,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $orderUnit,
                 $exchangeRate,
                 $orderRef,
+                $refrence,
                 $transactionFee
             );
             $ordered = $placeOrder->execute();

@@ -1,5 +1,6 @@
 <?php
 require('../server.php');
+//connected to 
 //1 Use the transaction ref to get the specific transaction and post its details on the page
 //2 if the release fund is clicked, the transaction ref and the amount should be sent to the database so that the buyer can be credited.
 //When the buyer is credited then trade should be removed from the pending to the completed.
@@ -7,10 +8,11 @@ require('../server.php');
 $accountOwner = $_SESSION['user_id'];
 $data = array();
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    //The specific order refrence
     if ($_POST['order_refrence']) {
         $order_refrence = $_POST['order_refrence'];
         // Use prepared statements to prevent SQL injection
-        $stmt = "SELECT * FROM `p2p_order` WHERE `transaction_refrence` = ? AND buyer_id = ?";
+        $stmt = "SELECT * FROM `p2p_order` WHERE `order_refrence` = ? AND buyer_id = ?";
         $stmt2 = $conn->prepare($stmt);
         $stmt2->bind_param("si", $order_refrence, $accountOwner);
         $stmt2->execute();

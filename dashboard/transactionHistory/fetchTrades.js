@@ -1,7 +1,7 @@
 console.log("fetchData trades");
 /*
 1 fetch all the transaction histories and paste it inside respective html
-
+fetchData("../php/TransactionHistory/history.php");
 */
 
 async function fetchData(url) {
@@ -26,19 +26,20 @@ async function fetchData(url) {
       }
       if (data.pendingSell) {
         data.pendingSell.forEach(pending => {
-          const {buyer_id,exchange_rate,order_unit,type,wallet,wallet_to,date,transaction_refrence
+          const {buyer_id,exchange_rate,order_unit,type,wallet,wallet_to,date,post_refrence,order_refrence
           }= pending;
           const pendingTrade =
             `<div class="table-info" id="pendingSell">
+            <input type="text" value="${post_refrence}" hidden>
             <h4 hidden>${buyer_id}</h4>
             <h4>Order Type: <span class="green-text">${type}</span></h4>
             <h4>Wallet From: <span class="green-text">${wallet}</span></h4>
             <h4>Wallet To: <span class="green-text">${wallet_to}</span></h4>
             <h4>Rate: <span class="green-text">${exchange_rate}</span></h4>
             <h4>Unit: <span class="green-text">${order_unit}</span></h4>
-            <h4>Lowest: <span class="green-text">${order_unit *1 * exchange_rate*1}</span></h4>
+            <h4>Amount: <span class="green-text">${order_unit *1 * exchange_rate*1}</span></h4>
             <h4>Posted on: <span class="green-text">${date}</span></h4>
-            <h4>Reference: <span class="green-text" id="order_ref">${transaction_refrence}</span></h4>
+            <h4>Reference: <span class="green-text" id="order_ref">${order_refrence}</span></h4>
             <h4>Payment Receiving Methods: <span><b>${pending.payment_method}</b></span>
             <h4><button style="cursor: pointer;">View Proof</button></h4>
             </div>
@@ -49,19 +50,20 @@ async function fetchData(url) {
       if (data.pendingBuy) {
         data.pendingBuy.forEach(pending => {
           //The link out of this page will be to the upload receipt page
-          const {buyer_id,exchange_rate,order_unit,type,wallet,wallet_to,date,transaction_refrence}= pending;
+          const {buyer_id,exchange_rate,order_unit,type,wallet,wallet_to,date,post_refrence,order_refrence,payment_method}= pending;
           const pendingTrade =
             `<div class="table-info" id="pendingBuy">
+            <input type="text" value="${post_refrence}" hidden>
             <h4 hidden>${buyer_id}</h4>
             <h4>Order Type: <span class="green-text">${type}</span></h4>
           <h4>Wallet From: <span class="green-text">${wallet}</span></h4>
           <h4>Wallet To: <span class="green-text">${wallet_to}</span></h4>
           <h4>Rate: <span class="green-text">${exchange_rate}</span></h4>
           <h4>Unit: <span class="green-text">${order_unit}</span></h4>
-          <h4>Lowest: <span class="green-text">${order_unit *1 * exchange_rate*1}</span></h4>
+          <h4>Amount: <span class="green-text">${order_unit *1 * exchange_rate*1}</span></h4>
           <h4>Posted on: <span class="green-text">${date}</span></h4>
-          <h4>Reference: <span class="green-text" id="order_ref">${transaction_refrence}</span></h4>
-          <h4>Payment Receiving Methods: <span><b>${pending.payment_method}</b></span>
+          <h4>Reference: <span class="green-text" id="order_ref">${order_refrence}</span></h4>
+          <h4>Payment Receiving Methods: <span><b>${payment_method}</b></span>
           <h4><button style="cursor: pointer;">Upload Proof</button></h4>
           </div>
           `;
