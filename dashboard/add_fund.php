@@ -31,10 +31,7 @@ $currencies = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </select>
         <br>
-        <label for="amount">Amount:</label>
-        <input type="text" id="amount" name="amount" required>
-        <br>
-        <input type="submit" value="Add Funds">
+        
     </form>
 
     <!-- JavaScript code -->

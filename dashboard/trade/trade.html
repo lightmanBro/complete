@@ -67,13 +67,13 @@
             <button id="button01" class="pick-btn" hidden>SELL</button>
           </div>
         </div>
-        <!-- <div class="p2p">
+        <div class="p2p">
           <button id="Buy1" class="active pick-btn">(&#x20A6;) NGN</button>
           <button id="Buy2" class="pick-btn">($) USD</button>
           <button id="Buy3" class="pick-btn">(&#163;) GPB</button>
           <button id="Buy4" class="pick-btn">(&#x0052;) ZAR</button>
           <button id="Buy5" class="pick-btn">(&#x20B5;) GHC</button>
-        </div> -->
+        </div>
         <div class="banner-center">
           <button id="Buy6" class="active pick-btn">PAY BY WALLET</button>
            <button id="Buy7" class="pick-btn">OTHER METHOD</button>
@@ -124,8 +124,13 @@
 
               <form id="buy_wallet">
                 <div class="transaction">
+
+                  <div id="success" class="success" style="background-color: rgb(46, 204, 113); padding:15px;color:white;text-align:center;border-radius:2.5px; display:none;"></div>
+                    <div id="failed" class="success" style="background-color: #f95738; padding:15px;color:white;text-align:center;border-radius:2.5px;display:none;"></div>
+
                   <div class="payment-method-head">
-                    <H4> PAY BY WALLET</H4>
+                    <H4><span style="color: rgb(46, 204, 113); font-size:15px;border-bottom:grey 2px solid;">BUY PAY BY WALLET</span></H4>
+                    
                     <p><span></span> <span></span></p>
                   </div>
                   <div class="payment-method-bank">
@@ -161,13 +166,14 @@
                       <p> </p>
                     </div>
                     <div class="name-details" id="transaction_fee">
-                      <h4 >FEE 1%:</h4>
+                      <h4 >FEE 0.08%:</h4>
                       <p></p>
                     </div>
                     <div class="name-details" id="receive_amount">
                       <h4 >RECEIVE AMOUNT:</h4>
                       <p></p>
                     </div>
+                    <p><b>Note!!</b> <span style="color: #f95738; font-size:15px">0.08%</span> will be deducted as transaction fee for p2p for all currency except USD (Dollar) if less than 100USD transaction fee will be <span style="color: #f95738; font-size:15px">0.5 USD</span> but if higher than 100USD <span style="color: #f95738; font-size:15px">1.0 USD</span> will be deducted as transaction fee.</p>
                     <div class="btn-proceed">
                       <button class="popup-confirm" id="buy_wallet_confirm">CONFIRM</button>
                       <button type="reset" class="close-btn" id="buy_wallet_cancel" style="background-color: var(--secondary);">CANCEL</button>
@@ -179,7 +185,7 @@
           </div>
 
 
-          <div class="popup-container-inner">
+          <div class="popup-container-inner" id="buyInnerpopup">
             <div class="transaction">
               <div class="popup-b">
                 <div class="payment-method-head">
@@ -193,34 +199,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="payment-method-bank">
-                  <div class="name-details">
-                    <h4>MY WALLET:</h4>
-                    <p>NAIRA WALLET</p>
-                  </div>
-                  <div class="name-details">
-                    <h4>SELLER:</h4>
-                    <p>USD WALLET</p>
-                  </div>
-                  <div class="name-details">
-                    <h4>PURCHASE</h4>
-                    <p>$100</p>
-                  </div>
-                  <div class="name-details">
-                    <h4> PRICE:</h4>
-                    <p> &#x20A6;74,000</p>
-                  </div>
-                  <div class="name-details">
-                    <h4>FEE 1%:</h4>
-                    <p>$1</p>
-                  </div>
-                  <div class="name-details">
-                    <h4>RECEIVE:</h4>
-                    <p>$99.00</p>
-                  </div>
-                  <div class="complete-card" id="complete-card">
-                    <h3>Transaction ID: #2187093564 </h3>
-                  </div>
+                <div class="payment-method-bank" id="buyReceipt">
+                  <!-- The order summary receipt will be displayed here -->
+
                   <div class="btn-proceed">
                     <a href="">
                       <button class="close-btn-inner" id="cancel-inner"> OK</button>
@@ -273,9 +254,16 @@
         <!-- Pop-up container for sell -->
         <div class="popup-container" id="popup-container2" style="display: none;">
           <div class="popup-content">
-              <form id="sell_wallet">
+              <form id="sell_wallet"> 
                 <div class="transaction">
-                  
+                  <div class="status" >
+                    <div id="success" class="success" style="background-color: rgb(46, 204, 113); padding:15px;color:white;text-align:center;border-radius:2.5px; display:none;"></div>
+                    <div id="failed" class="success" style="background-color: #f99538; padding:15px;color:white;text-align:center;border-radius:2.5px;display:none;"></div>
+                    <div class="payment-method-head">
+                      <H4><span style="color: #f95738; font-size:15px;border-bottom:grey 2px solid;">SELL PAY BY WALLET</span></H4>
+                      <p><span></span> <span></span></p>
+                    </div>
+                  </div>
                   <div class="payment-method-bank">
                     <div class="name-details" id="my_wallet">
                       <h4 >MY WALLET:</h4>
@@ -309,13 +297,14 @@
                       <p></p>
                     </div>
                     <div class="name-details" id="transaction_fee">
-                      <h4 >FEE 1%:</h4>
+                      <h4 >FEE 0.08%:</h4>
                       <p></p>
                     </div>
                     <div class="name-details" id="receive_amount">
                       <h4 >RECEIVE AMOUNT:</h4>
                       <p></p>
                     </div>
+                    <p><b>Note!!</b> <span style="color: #f95738; font-size:15px">0.08%</span> will be deducted as transaction fee for p2p for all currency except USD (Dollar) if less than 100USD transaction fee will be <span style="color: #f95738; font-size:15px">0.5 USD</span> but if higher than 100USD <span style="color: #f95738; font-size:15px">1.0 USD</span> will be deducted as transaction fee.</p>
                     <div class="btn-proceed">
                       <button class="popup-confirm" id="sell_wallet_confirm">CONFIRM</button>
                       <button type="reset" class="close-btn" id="sell_wallet_cancel" style="background-color: var(--secondary);">CANCEL</button>
@@ -326,8 +315,8 @@
             </div>
           </div>
         </div>
-
-        <div class="popup-container-inner1">
+<!-- Will return to fix this receipt -->
+        <div class="popup-container-inner1" id="sellInnerpopup">
           <div class="transaction">
 
             <div class="popup-b">
@@ -344,27 +333,8 @@
                   </div>
                 </div>
               </div>
-              <div class="payment-method-bank">
-                <div class="name-details">
-                  <h4>MY WALLET:</h4>
-                  <p>GHC WALLET</p>
-                </div>
-                <div class="name-details">
-                  <h4>RECEIVER :</h4>
-                  <p> USD WALLET</p>
-                </div>
-
-                <div class="name-details">
-                  <h4>SOLD AMOUNT</h4>
-                  <p>&#x20B5;100</p>
-                </div>
-                <div class="name-details">
-                  <h4>RECEIVED AMOUNT:</h4>
-                  <p>$12.5</p>
-                </div>
-                <div class="complete-card" id="complete-card">
-                  <h3>Transaction ID: #2187093564 </h3>
-                </div>
+              <div class="payment-method-bank" id="sellReceipt">
+                <!--  -->
                 <div class="btn-proceed">
                   <button class="close-btn-inner1" id="cancel-inner"> OK</button>
                 </div>
@@ -430,58 +400,58 @@
                 <div class="transaction">
                   <div class="payment-method-head">
                     <H4>OTHER PAYMENT METHODS</H4>
+                    <p><b>Note:</b>You will pay this seller by <span id="buyMethodDisplay"></span> Please copy the payment method details below to make payment as you place the p2p order</p>
                   </div>
                   <div class="payment-method-head">
-
-                    <div class="methods">
-                      <div class="name-details">
-                        <h4>Bank name:</h4>
-                        <p>SPRING BANK</p>
-                      </div>
-                      <div class="name-details">
-                        <h4>Acc name:</h4>
-                        <p>ADEJUYI SAMSON J</p>
-                      </div>
-                      <div class="name-details">
-                        <h4>Account NO:</h4>
-                        <p>2187093564</p>
-                      </div>
+                    <div class="methods" id="method_display">
+                     
                     </div>
 
                   </div>
-
                   <div class="payment-method-bank">
-                    <div class="name-details">
-                      <h4 id="my_wallet">MY WALLET:</h4>
+                    <div class="name-details" id="my_wallet">
+                      <h4 >MY WALLET:</h4>
                       <p>GHC WALLET</p>
                     </div>
                     <div class="name-details" id="wallet_balance">
                       <h4 >WALLET BALANCE:</h4>
                       <p>500</p>
                     </div>
-                    <div class="name-details">
-                      <h4 id="seller_wallet">SELLER WALLET:</h4>
-                      <p>USD WALLET</p>
+                    <div class="name-details" id="buyer_wallet">
+                      <h4 >SELLER WALLET:</h4>
+                      <p> </p>
+                    </div>
+                    <div class="name-details" id="low_limit">
+                      <h4 >Low limit:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="high_limit">
+                      <h4 >High limit:</h4>
+                      <p></p>
+                    </div>
+                    <div class="name-details" id="exchange_rate">
+                      <h4 >Exchange Rate:</h4>
+                      <p> </p>
                     </div>
                     <div class="name-details">
                       <h4>PURCHASE Unit</h4><input type="tel" placeholder="" id="amount">
                     </div>
-                    <div class="name-details">
-                      <h4 id="purchase_cost">PURCHASE COST:</h4>
-                      <p> &#x20A6;74,000</p>
+                    <div class="name-details" id="purchase_cost">
+                      <h4 >PURCHASE COST:</h4>
+                      <p> </p>
                     </div>
-                    <div class="name-details">
-                      <h4 id="transaction_fee">FEE 1%:</h4>
-                      <p>$1</p>
+                    <div class="name-details" id="transaction_fee">
+                      <h4 >FEE 0.08%:</h4>
+                      <p> </p>
                     </div>
-                    <div class="name-details">
-                      <h4 id="receive_amount">RECEIVE AMOUNT:</h4>
-                      <p>$99.00</p>
+                    <div class="name-details" id="receive_amount">
+                      <h4 >RECEIVE AMOUNT:</h4>
+                      <p></p>
                     </div>
 
                     <div class="btn-proceed">
                       <a href="verify.html">
-                        <button class="close-btn5" id="cancel-inner"> CONFIRM</button>
+                        <button class="close-btn5" id="buy_other_confirm"> CONFIRM</button>
                       </a>
                       <button class="close-btn5" id="cancel" style="background-color: var(--secondary);">CANCEL</button>
                     </div>
@@ -547,8 +517,10 @@
                   <div class="transaction">
                     <div class="payment-method-head">
                       <H4>OTHER PAYMENT METHODS</H4>
+                      <p id="notice" style="background-color: aliceblue;padding:5px;font-size:10px;"><b>NOTE:</b> This buyer will pay you through <b><span></span></b> please make sure your <b><span></span></b> account is already setup for smooth transaction or <a href="../settings/index.php?#payment_methods">set up payment methods</a>. Thanks</p>
                     </div>
                     <div class="payment-method-head">
+                      <!-- The payment method will no longer be displayed here rather inside the buy other method -->
                       <div class="methods" id="method_display">
                        
                       </div>
@@ -558,7 +530,7 @@
                     <div class="payment-method-bank">
                       <div class="name-details" id="my_wallet">
                         <h4 >MY WALLET:</h4>
-                        <p>GHC WALLET</p>
+                        <p></p>
                       </div>
                       <div class="name-details" id="wallet_balance">
                         <h4 >WALLET BALANCE:</h4>
@@ -580,17 +552,17 @@
                         <p> </p>
                       </div>
                       <div class="name-details" id="transaction_fee">
-                        <h4 >FEE 1%:</h4>
-                        <p>$1</p>
+                        <h4 >FEE 0.08%:</h4>
+                        <p> </p>
                       </div>
-                      <div class="name-details">
+                      <div class="name-details" id="receive_amount">
                         <h4 >RECEIVE AMOUNT:</h4>
-                        <p>$99.00</p>
+                        <p></p>
                       </div>
 
                       <div class="btn-proceed">
                         <a href="verify.html">
-                          <button class="close-btn5" id="cancel-inner"> CONFIRM</button>
+                          <button class="close-btn5" id=""> CONFIRM</button>
                         </a>
                         <button class="close-btn5" id="cancel" style="background-color: var(--secondary);">CANCEL</button>
                       </div>
@@ -610,6 +582,9 @@
   <script type="module" src="../trade/script/safety.js"></script>
   <script type="module" src="../trade/script/script.js"></script>
   <script type="module" src="../trade/script/sell.js"></script>
+  <script type="module" src="../trade/script/p2porderActions.js"></script>
+  <script type="module" src="../trade/script/buyWalletAction.js"></script>
+  <script type="module" src="../trade/script/sellWalletAction.js"></script>
 
 </body>
 

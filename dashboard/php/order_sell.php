@@ -1,66 +1,79 @@
 <?php
-//Connected to sell.js in trade sell order request.
-// session_start();
+//Sell Posts
 include('server.php');
-$accountOwner = $_SESSION['id'];
-$wallets=$_SESSION['wallet_balance'];
-
+$accountOwner = $_SESSION['user_id'];
+$wallets = $_SESSION['wallet_balance'];
 $sellOrders = array();
 
-
+// Fetch data from the 'p2p_posts_sell' table.
 $stmt2 = "SELECT 
-`user_id`,
-`user_name`,
-`wallet`,
-`lowest_rate`,
-`highest_rate`,
-`user_rate`,
-`payment_method`,
-`date` FROM `p2p_posts_sell`
-ORDER BY `date` DESC";
-$result = mysqli_query($conn,$stmt2);
+            `ind`,
+            `user_id`,
+            `user_name`,
+            `wallet`,
+            `lowest_rate`,
+            `highest_rate`,
+            `user_rate`,
+            `payment_method`,
+            `sell_order_refrence`,
+            `date`
+         FROM `p2p_posts_sell`
+         ORDER BY `date` DESC";
 
-//more like if(result.num_rows > 0) in js.
+$result = mysqli_query($conn, $stmt2);
+
+// Check if there are rows in the result.
 if ($result->num_rows > 0) {
-    //turned the data variable into an array variable
+    // Create an array to store the rows.
     $data = array();
-    //check if the row contain the result and turn the result to an associative array ['key'=>'value'] example $database = ['name'=>'david','surname'=>'Omotoso', etc]
-    while($row = $result->fetch_assoc()) {
-              //variable,arraydata
-      // array_push($data, $row);
-      $data[] =$row;
+
+    // Fetch each row and store it in the $data array.
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
     }
-    //convert data array to json format
-    $sellOrders['wallet']=$data;
-  }
 
-  $stmtOther = "SELECT 
-`user_id`,
-`user_name`,
-`wallet`,
-`lowest_rate`,
-`highest_rate`,
-`user_rate`,
-`wallet_to`,
-`payment_method`
- FROM `p2p_post_sell_other_method`
-ORDER BY `time` DESC";
-$OtherResult = mysqli_query($conn,$stmtOther);
+    // Assign the $data array to the 'wallet' key in the $sellOrders array.
+    $sellOrders['wallet'] = $data;
+}
 
-//more like if(result.num_rows > 0) in js.
+// Fetch data from the 'p2p_post_sell_other_method' table.
+$stmtOther = "SELECT 
+                `ind`,
+                `user_id`,
+                `user_name`,
+                `wallet`,
+                `lowest_rate`,
+                `highest_rate`,
+                `user_rate`,
+                `wallet_to`,
+                `payment_method`,
+                `sell_other_refrence`
+             FROM `p2p_post_sell_other_method`
+             ORDER BY `time` DESC";
+
+$OtherResult = mysqli_query($conn, $stmtOther);
+
+// Check if there are rows in the result.
 if ($OtherResult->num_rows > 0) {
-    //turned the data variable into an array variable
+    // Create an array to store the rows.
     $data = array();
-    //check if the row contain the result and turn the result to an associative array ['key'=>'value'] example $database = ['name'=>'david','surname'=>'Omotoso', etc]
-    while($row = $OtherResult->fetch_assoc()) {
-              //variable,arraydata
-      // array_push($data, $row);
-      $data[] =$row;
+
+    // Fetch each row and store it in the $data array.
+    while ($row = $OtherResult->fetch_assoc()) {
+        $data[] = $row;
     }
-    //convert data array to json format
-    $sellOrders['other']=$data;
-  }
-  echo json_encode($sellOrders);
-  //close the database connection
-//   $conn->close();  
+
+    // Assign the $data array to the 'other' key in the $sellOrders array.
+    $sellOrders['other_sell'] = $data;
+}
+
+// Convert the $sellOrders array to JSON format.
+$jsonResponse = json_encode($sellOrders);
+
+// Set the appropriate content-type header for JSON.
+header('Content-Type: application/json');
+
+// Echo the JSON response.
+echo $jsonResponse;
+// Note: No need to close the database connection here. PHP will automatically close it at the end of script execution.
 ?>

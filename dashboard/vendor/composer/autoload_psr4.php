@@ -18,6 +18,6 @@ return array(
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
-    'Flutterwave\\' => array($vendorDir . '/flutterwavedev/flutterwave-v3/src', $vendorDir . '/flutterwavedev/flutterwave-v3/src'),
+    'Flutterwave\\' => array($vendorDir . '/flutterwavedev/flutterwave-v3/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
 );

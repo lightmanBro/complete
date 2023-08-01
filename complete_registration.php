@@ -45,8 +45,8 @@ if ($stmt->rowCount() == 1) {
         $baseUrl = 'https://api.flutterwave.com/v3';
         $customPrefix = 'Tamopei - '; // Customize the prefix here
 
-        // Combine the user's name for the narration
-        $narration = $customPrefix . $user['first_name'] . ' ' . $user['last_name'];
+        // Set the account name as the narration
+        $accountName = $customPrefix . $user['first_name'] . ' ' . $user['middle_name'] . ' ' . $user['last_name'];
 
         // Set the request headers
         $headers = array(
@@ -59,7 +59,7 @@ if ($stmt->rowCount() == 1) {
             'email' => $email,
             'amount' => 0, // Set the initial balance to zero
             'bvn' => $bvn,
-            'narration' => $narration,
+            'narration' => $accountName,
             'is_permanent' => true,
             // Add other required parameters if needed
         );
@@ -81,8 +81,25 @@ if ($stmt->rowCount() == 1) {
         if ($responseData && isset($responseData['status']) && $responseData['status'] === 'success') {
             // Virtual account created successfully
 
-            // Get the virtual account number
+            // Get the virtual account number and bank name
             $accountNumber = $responseData['data']['account_number'];
+            $bankName = $responseData['data']['bank_name'];
+
+            // Display the response message with bank name and account number
+            $responseMsg = 'Account created successfully.';
+            $msg = $responseMsg . '<br>';
+            $msg .= 'Bank Name: ' . $bankName . '<br>';
+            $msg .= 'Account Number: ' . $accountNumber . '<br>';
+            $msg .= 'Account Name: ' . $accountName . '<br>';
+
+            // Insert the details into the virtual_account table
+            $sql = "INSERT INTO virtual_account (user_id, account_number, bank_name, account_name) VALUES (:userId, :accountNumber, :bankName, :accountName)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':userId', $user['user_id']);
+            $stmt->bindParam(':accountNumber', $accountNumber);
+            $stmt->bindParam(':bankName', $bankName);
+            $stmt->bindParam(':accountName', $accountName);
+            $stmt->execute();
 
             // Update the user's BVN hash and account number in the database
             $bvnHash = password_hash($bvn, PASSWORD_DEFAULT);
@@ -93,13 +110,21 @@ if ($stmt->rowCount() == 1) {
             $stmt->bindParam(':email', $email);
             $stmt->execute();
 
-            // Redirect to the dashboard or any other page after successful BVN verification
+            // Set the user_id and email in the session
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['email'] = $email;
+
+            // Redirect to the dashboard
             header("Location: dashboard/index.php");
             exit();
         } else {
             // Error occurred while creating the virtual account
             $errorMessage = isset($responseData['message']) ? $responseData['message'] : 'An error occurred.';
-            $msg = 'An error occurred: ' . $errorMessage;
+            $msg = 'An error occurred: ' . $errorMessage . '<br>';
+
+            // Display the response message
+            $responseMsg = isset($responseData['message']) ? $responseData['message'] : 'An error occurred.';
+            $msg .= 'Response: ' . $responseMsg . '<br>';
         }
     }
 } else {
@@ -110,6 +135,8 @@ if ($stmt->rowCount() == 1) {
 ?>
 
 <!-- Rest of the HTML code remains the same -->
+
+
 
 
 <!DOCTYPE html>

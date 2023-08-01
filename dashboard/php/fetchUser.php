@@ -1,7 +1,6 @@
 <?php
 //connecteď to fetchDetails.js
 include('server.php');
-// session_start();//The session already started inside the Home php can also be used here without starting another new session
 function clean_Input($userInpt){
     $userInpt = trim($userInpt);
     $userInpt = strip_tags($userInpt);
@@ -9,6 +8,7 @@ function clean_Input($userInpt){
     $userInpt = htmlspecialchars($userInpt);
     return $userInpt;
 }
+
 $response = array("Not_found"=>"",);
 if($_SERVER['REQUEST_METHOD']=== 'POST'){
 
@@ -33,9 +33,4 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
         // $_SESSION['id'] = $id;
         echo json_encode($row);
     }
-
-
-
 }
-
-?>

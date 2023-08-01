@@ -2,7 +2,7 @@
 //Connected to history/fetTrades.js
 
 require('../server.php');
-$accountOwner = $_SESSION['id'];
+$accountOwner = $_SESSION['user_id'];
 $history = array(
     "received" => "",
     "sent" => "",

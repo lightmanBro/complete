@@ -9,14 +9,17 @@ const domStrings = {
 const balanceReq = new XMLHttpRequest();
 balanceReq.onload = function () {
   const data = JSON.parse(this.responseText);
+  console.log(data);
   const naira = data['Naira'],
   dollar = data['Dollar'],
   rand = data['Rand'],
-  cedi = data['Cedi'];
+  cedi = data['Cedi'],
+  pound = data['Pound'];
   sessionStorage.setItem('Naira',naira);
   sessionStorage.setItem('Dollar',dollar);
   sessionStorage.setItem('Rand',rand);
   sessionStorage.setItem('Cedi',cedi);
+  sessionStorage.setItem('Pound',pound);
   console.log(sessionStorage.getItem('Cedi'));
   for (const key in data) {
     const curr = {
@@ -51,7 +54,7 @@ balanceReq.onload = function () {
       newHtml = newHtml.replace("%logo", "GHC");
     } else if (curr.walletName == "Rand") {
       newHtml = newHtml.replace("%logo", "ZAR");
-    }
+    }else if(curr.walletName == "Pound") newHtml = newHtml.replace("%logo","GBP");
 
     //Wallet to Wallet
     const walletAvailable = document.querySelector(".w p span");
@@ -68,6 +71,9 @@ balanceReq.onload = function () {
           break;
         case "Rand":
           walletAvailable.innerHTML = `Balance ₨${data[e.target.value]} `;
+          break;
+        case "Pound":
+          walletAvailable.innerHTML = `Balance ₤${data[e.target.value]} `;
           break;
         default:
           walletAvailable.innerHTML = "";

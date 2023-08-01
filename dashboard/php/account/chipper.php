@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-$accountOwner = $_SESSION['id'];
+$accountOwner = $_SESSION['user_id'];
 $serverName = 'localhost';
 $username = 'root';
-$password = 'password';
-$databaseName = 'tamopei payment options';
+$password = '';
+$databaseName = 'register';
 $conn = new mysqli($serverName,$username,$password,$databaseName);
 if($conn){
     $userNameChipper = clean_Input($_POST['user_name']);

@@ -1,0 +1,137 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+// Get the email from the session
+$email = $_SESSION['email'];
+
+// Include the database connection file
+require_once '../server.php';
+
+// Retrieve the user data from the database
+$sql = "SELECT * FROM user_credentials WHERE email = :email";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':email', $email);
+$stmt->execute();
+
+if ($stmt->rowCount() == 1) {
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $email = $user['email'];
+
+    // Set the user_id in the session
+    $_SESSION['user_id'] = $user['user_id'];
+
+    // Continue with the rest of your code
+    if ($user['verification_status']) {
+        // User is logged in and account is verified
+        $msg = "Login successful!";
+        $username = $user['username'];
+        // Fetch bank details from the virtual_account table
+        $sql_bank = "SELECT * FROM virtual_account WHERE user_id = :user_id";
+        $stmt_bank = $pdo->prepare($sql_bank);
+        $stmt_bank->bindParam(':user_id', $user['user_id']);
+        $stmt_bank->execute();
+
+        if ($stmt_bank->rowCount() == 1) {
+            $bank_details = $stmt_bank->fetch(PDO::FETCH_ASSOC);
+            $bankName = $bank_details['bank_name'];
+            $accountNumber = $bank_details['account_number'];
+        } else {
+            // Bank details not found
+            $bankName = "Bank not found";
+            $accountNumber = "Account not found";
+        }
+        // Fetch wallet amounts from the wallet table
+        $sql_wallet = "SELECT * FROM wallet WHERE user_id = :user_id";
+        $stmt_wallet = $pdo->prepare($sql_wallet);
+        $stmt_wallet->bindParam(':user_id', $user['user_id']);
+        $stmt_wallet->execute();
+
+        if ($stmt_wallet->rowCount() > 0) {
+            $wallets = $stmt_wallet->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // Wallet data not found
+            $wallets = array();
+        }
+    } else {
+        // Account is not verified
+        $msg = "Account is not verified.";
+    }
+} else {
+    // User not found in the database
+    $msg = "User not found.";
+    // Clear the email and user_id from the session
+    unset($_SESSION['email']);
+    unset($_SESSION['user_id']);
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fund Wallet</title>
+</head>
+<body>
+    <div class="card-form">
+        <h1>Add Funds using Card</h1>
+        <form id="fundWalletForm">
+            <label for="amount">Amount (in Naira):</label>
+            <input type="number" step="0.01" id="amount" name="amount" required>
+            <br>
+            <input type="submit" value="Add Funds">
+        </form>
+    </div>
+
+    <!-- Include Flutterwave JavaScript library -->
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+
+    <script>
+        // Function to generate a random string
+        function generateRandomString(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+    
+        // Convert amount to smallest currency unit (kobo for NGN)
+        function convertToSmallestCurrencyUnit(amount) {
+            return amount * 100; // Convert Naira to kobo by multiplying by 100
+        }
+    
+        // Handle form submission
+        document.getElementById('fundWalletForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            // Get the amount from the form
+            const amountInNaira = parseFloat(document.getElementById('amount').value);
+    
+            // Check if the amount is valid
+            if (isNaN(amountInNaira) || amountInNaira <= 0) {
+                alert('Invalid amount. Please enter a valid positive number.');
+                return;
+            }
+    
+            // Convert amount to smallest currency unit (kobo for NGN)
+            const amountInKobo = convertToSmallestCurrencyUnit(amountInNaira);
+    
+            // Generate a unique transaction reference
+            const txRef = 'TX-' + generateRandomString(8); // You can adjust the length of the random string as needed.
+    
+            // Fetch the user's email from the PHP session
+            const email = '<?php echo isset($email) ? $email : ""; ?>';
+    
+            // Redirect to Flutterwave Checkout with transaction data as query parameters
+            window.location.href = `fund_niara.php?tx_ref=${txRef}&amount=${amountInKobo}&email=${email}`;
+        });
+    </script>
+    
+    </body>
+</html>

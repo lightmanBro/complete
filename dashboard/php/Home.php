@@ -1,9 +1,8 @@
 <?php
-
+//Connected to Home.js
+//This fetched the user id and name so that it can be used all over the pages;
 include('server.php');
- //session_start();
  $userId= $_SESSION['user_id'];
-//The session already started inside the Home php can also be used here without starting another new session
 $sql = "SELECT * FROM .user_credentials WHERE user_id = $userId";
 $user_credentials = mysqli_query($conn,$sql);
 if($user_credentials){
@@ -16,4 +15,3 @@ if($user_credentials){
     echo json_encode($row);
     //print_r($_SESSION['user_id']);
 }
-?>

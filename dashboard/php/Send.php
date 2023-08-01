@@ -2,6 +2,7 @@
 
 <?php
 // connecteď to fetchDetails.js
+//This handles the sending currency from wallet to wallet;
 include('server.php');
 
 $accountOwner = $_SESSION['user_id'];
@@ -33,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $stmt->fetch();
     $stmt->close();
 
-    if ($userBalance >= $sentAmount) {
+    if ($userBalance >= ($sentAmount+($sentAmount * 0.01))) {
         $stmt = $conn->prepare("SELECT user_id FROM `user_credentials` WHERE `user_id` = ?");
         $stmt->bind_param('s', $receiverName);
         $stmt->execute();
@@ -70,6 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $stmt->bind_param('sssdss', $accountOwner, $beneficiaryId, $select, $sentAmount, $charges, $refrence);
             $result = $stmt->execute();
             $stmt->close();
+
+            //Save the Transaction fee to the database
+            $p2pFeeUpdate = $conn->prepare("UPDATE `wallet_transfer_fee` SET {$select} = {$select} + ?");
+            $p2pFeeUpdate->bind_param('d',$charges);
+            $p2pfeeUpdated = $p2pFeeUpdate->execute();
+            $p2pFeeUpdate->close();
+
 
             if ($added && $result) {
                 $response["Successful"] = "Sent " . $sentAmount . " " . $select . " to " . $receiverName;

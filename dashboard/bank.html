@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List of Banks</title>
+</head>
+<body>
+  <h1>List of Banks</h1>
+
+  <form>
+    <label for="bank">Bank:</label>
+    <select id="bank" name="bank">
+      <option value="">Select a Bank</option>
+      <?php
+      // Replace 'your_paystack_secret_key_here' with your actual Paystack API key
+      $secretKey = 'your_paystack_secret_key_here';
+      
+      // API endpoint for bank list
+      $bankListUrl = "https://api.paystack.co/bank";
+      
+      // Set up the cURL request
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $bankListUrl);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, [
+          "Authorization: Bearer $secretKey",
+      ]);
+      
+      // Execute the cURL request
+      $response = curl_exec($ch);
+      curl_close($ch);
+      
+      // Parse the JSON response
+      $bankList = json_decode($response, true);
+      
+      // Check if the bank list was successfully fetched
+      if ($bankList['status'] === true) {
+          foreach ($bankList['data'] as $bank) {
+              echo "<option value='" . $bank['code'] . "'>" . $bank['name'] . "</option>";
+          }
+      } else {
+          echo "<option value='' disabled>Error fetching bank list</option>";
+      }
+      ?>
+    </select>
+  </form>
+</body>
+</html>

@@ -1,14 +1,10 @@
 <?php
 //Connected to trade.js
-session_start();
-$accountOwner = $_SESSION['id'];
-$serverName = 'localhost';
-$username = 'root';
-$password = '';
-$databaseName = 'register';
+//This fetches the payment method the user specifies 
+include('server.php');
 $conn = new mysqli($serverName,$username,$password,$databaseName);
 $wallets=$_SESSION['wallet_balance'];
-
+$accountOwner = $_SESSION['user_id'];
 
 $Paymentmethod = [];
 

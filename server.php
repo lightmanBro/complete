@@ -4,7 +4,7 @@
 $host = 'localhost';
 $db_name = 'register';
 $db_username = 'root';
-$db_password = '';
+$db_password = 'password';
 
 // Attempt to connect to the database
 try {

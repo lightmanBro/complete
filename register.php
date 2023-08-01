@@ -83,6 +83,11 @@ if (isset($_POST['submit'])) {
                     $stmt = $pdo->prepare("INSERT INTO user_credentials (first_name, middle_name, last_name, email, username, phone, address, country, state, city, account_number, password, referral_id, referral_link, verification_code, level, kyc_status, verification_status, referred_by, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                     $stmt->execute([$firstName, $middleName, $lastName, $email, $username, $phone, $address, $country, $state, $city, $accountNumber, $hashedPassword, $referralID, $referralLink, $verificationCode, 'Tier 1', 'unverified', 0, $referredBy, $userId]);
+                    
+                    // Update the wallet balance for all currencies to 0.00
+                    $stmt = $pdo->prepare("INSERT INTO wallet (user_id, Rand, Cedi, Dollar, Naira) VALUES (?, 0.00, 0.00, 0.00, 0.00)");
+                    $stmt->execute([$userId]);
+                    
                     // Send verification email
                     sendVerificationEmail($email, $verificationCode, $username);
 
@@ -123,16 +128,32 @@ function generateVerificationCode()
     return $verificationCode;
 }
 // Function to generate user ID
-function generateuserId()
+function generateUserId()
 {
-    // Generate a random ten-digit number
-    $randomNumber = mt_rand(1000000000, 9999999999);
+    // Get the current year and month
+    $year = date('Y');
+    $month = date('m');
+
+    // Generate a random four-digit number
+    $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
     // Generate the user ID
-    $userId = $randomNumber;
+    $userId = $year . $month . $randomNumber;
+
+    // Check if the generated ID already exists
+    $existingIds = array(); // Replace this with your code to fetch existing IDs from the database
+    while (in_array($userId, $existingIds)) {
+        // Adjust the last digit of the ID
+        $lastDigit = substr($userId, -1);
+        $newLastDigit = mt_rand(0, 9);
+        if ($newLastDigit != $lastDigit) {
+            $userId = substr_replace($userId, $newLastDigit, -1);
+        }
+    }
 
     return $userId;
 }
+
 
 // Function to generate the referral link
 function generateReferralLink($referralID, $username)
@@ -171,9 +192,9 @@ function sendVerificationEmail($email, $verificationCode, $username)
 
         // Customize the email body
         $message = "Dear $username,<br><br>";
-$message .= "Thank you for registering on Tamopei. Here is your verification code: $verificationCode<br><br>";
-$message .= "Kindly verify your account to continue your registration.<br><br>";
-$message .= '<a href="http://localhost/register/verification.php?email=' . urlencode($email) . '">Click here to enter your verification code</a>';
+        $message .= "Thank you for registering on Tamopei. Here is your verification code: $verificationCode<br><br>";
+        $message .= "Kindly verify your account to continue your registration.<br><br>";
+        $message .= '<a href="http://localhost/register/verification.php?email=' . urlencode($email) . '">Click here to enter your verification code</a>';
         $mail->Body = $message;
 
         // Send the email
@@ -184,6 +205,7 @@ $message .= '<a href="http://localhost/register/verification.php?email=' . urlen
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -28,52 +28,6 @@ notificationModalBtn.addEventListener('click',(e)=>{
   e.preventDefault();
   notificationModal.style.display = 'block';
   console.log('notification button');
-  orderContainer.querySelectorAll('.notifications').forEach(container=>{
-
-    //The form box buy button to release the trade and in that process send a notification to the 
-    //buyer that the trade has been released then the specific notification will be removed from the stack.
-    container.querySelector('.buy-submit').addEventListener('click',(e)=>{
-      e.preventDefault();
-      const formData = new FormData(e.target.parentElement);
-      xhr.open("POST", "./php/order actions/order-release.php");
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = () => {
-          if (xhr.status === 200) {
-            /*The datas received from the database will be saved in an array and the length of the array will be the number of the 
-            new notification*/
-            // const data = JSON.parse(xhr.responseText);
-            alert(xhr.responseText);
-          }
-        };
-      const urlEncodedData = new URLSearchParams(formData).toString();
-      alert(urlEncodedData);
-      xhr.send(urlEncodedData);
-      e.target.parentElement.parentElement.style.display = "none";
-      window.location.reload();
-    })
-
-    //The form box cancel button to cancel the trade and in that process send a notification to the 
-    //buyer that the trade has been cancelled then the specific notification will be removed from the stack.
-    container.querySelector(".buy-reset").addEventListener("click", (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target.parentElement);
-      xhr.open("POST", "./php/order actions/order_cancel.php");
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = () => {
-          if (xhr.status === 200) {
-            /*The datas received from the database will be saved in an array and the length of the array will be the number of the 
-            new notification*/
-            // const data = JSON.parse(xhr.responseText);
-            alert(xhr.responseText)
-          }
-        };
-      const urlEncodedData = new URLSearchParams(formData).toString();
-      // alert(urlEncodedData);
-      xhr.send(urlEncodedData);
-      e.target.parentElement.style.display = "none";
-      window.location.reload();
-    });
-  })
 })
 
 

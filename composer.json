@@ -1,8 +1,5 @@
 {
     "require": {
-        "phpmailer/phpmailer": "^6.5",
-        "yabacon/paystack-php": "^2.2",
-        "flutterwavedev/flutterwave-v3": "dev-master"
-    },
-    "minimum-stability": "dev"
+        "phpmailer/phpmailer": "^6.5"
+    }
 }

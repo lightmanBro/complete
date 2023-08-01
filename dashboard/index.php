@@ -8,7 +8,6 @@ if (!isset($_SESSION['email'])) {
 }
 
 // Get the email from the session
-
 $email = $_SESSION['email'];
 
 // Include the database connection file
@@ -24,12 +23,31 @@ if ($stmt->rowCount() == 1) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $email = $user['email'];
 
+    // Set the user_id in the session
+    $_SESSION['user_id'] = $user['user_id'];
+
     // Continue with the rest of your code
     if ($user['verification_status']) {
         // User is logged in and account is verified
         $msg = "Login successful!";
         $username = $user['username'];
         $accountNumber = $user['account_number'];
+
+        // Fetch bank details from the virtual_account table
+        $sql_bank = "SELECT * FROM virtual_account WHERE user_id = :user_id";
+        $stmt_bank = $pdo->prepare($sql_bank);
+        $stmt_bank->bindParam(':user_id', $user['user_id']);
+        $stmt_bank->execute();
+
+        if ($stmt_bank->rowCount() == 1) {
+            $bank_details = $stmt_bank->fetch(PDO::FETCH_ASSOC);
+            $bankName = $bank_details['bank_name'];
+            $accountNumber = $bank_details['account_number'];
+        } else {
+            // Bank details not found
+            $bankName = "Bank not found";
+            $accountNumber = "Account not found";
+        }
     } else {
         // Account is not verified
         $msg = "Account is not verified.";
@@ -37,10 +55,12 @@ if ($stmt->rowCount() == 1) {
 } else {
     // User not found in the database
     $msg = "User not found.";
-    // Clear the email from the session
+    // Clear the email and user_id from the session
     unset($_SESSION['email']);
+    unset($_SESSION['user_id']);
 }
 ?>
+
 
 
 
@@ -139,7 +159,7 @@ if ($stmt->rowCount() == 1) {
                             </a></h2>
                     </div>
                 </div>
-                <h2 class="h2 hr">Olatunde Badiru Ekehinde</h2>
+                <h2 class="h2 hr"><!---Olatunde Badiru Ekehinde---></h2>
                 <div class="profile">
                     <img src="./img/COB-BOB-IRT-enroll_tractor.jpg" alt="">
                     <div id="id">USER-ID: <span></span></div>
@@ -493,66 +513,47 @@ if ($stmt->rowCount() == 1) {
 
             <div class="add-container">
                 <div class="add-container-top">
-                    <!-- <div class="back-link">
-                        <a href="">Add</a>
-                    </div> -->
                     <div class="close-btn">
                         <span class="material-icons-sharp">
                             close
                         </span>
                     </div>
-                    Add to wallet
+                    <!-- Add to wallet -->
                 </div>
                 <div class="add-container-body">
                     <div class="add-container-body-top">
                         <div class="fund-wallet">
                             <h2>Fund <span></span> Wallet</h2>
-                            <p>To fund wallet provide the datails below</p>
-                        </div>
-                        <div class="select">
-                            Select Wallet
-                            <select name="" id="select">
-                                <option value="select-wallet">Select Wallet</option>
-                                <option value="Naira">Naira Wallet</option>
-                                <option value="Cedi">Cedi wallet</option>
-                                <option value="Dollar">Dollar Wallet</option>
-                                <option value="Yuen">Yuen wallet</option>
-                            </select>
+                            <p>To fund your wallet use the datails below</p>
                         </div>
                     </div>
-                    <div class="banks none">
-                        <!-- select button to choose wether the transaction will be done by bank transfer or card deposit -->
-                        <!-- if transaction will be done by bank then show bank information entry modal-->
+                    <div class="wallet-balance">
+    <div class="cards amount">
+        <!-- Bank details and etc -->
+        <!-- if wallet selected is nigeria, it should only display the account number -->
+        <!-- if wallet selected is not nigeria it should display card options -->
+        <h3>Bank Name: <span><?php echo $bankName; ?></span></h3>
+        <div class="account-number">
+            Account Number: <?php echo $accountNumber; ?>
+        </div>
+    </div>
+</div>
 
-                        <p>Fund <span>Naira</span> wallet via Bank transfer</p>
-                        <div class="wallet-balance">
-                            <div class="cards amount">
-                                <!-- Bank details and etc -->
-                                <!-- if wallet selected is nigeria, it should only display the account number -->
-                                <!-- if wallet selected is not nigeria it should display card options -->
-                                <h3>Bank Name :<span>UBA Bank</span></h3>
-                                <div class="account-number">
-                                    Account Number: 234-5642-8796
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wallet-balance">
-                            <!-- Bank account informations -->
-                            <div class="cards amount">
-                                <!-- Bank details and etc -->
-                                <!-- if wallet selected is nigeria, it should only display the account number -->
-                                <!-- if wallet selected is not nigeria it should display card options -->
-                                <h3>Bank Name :<span>Access Bank</span></h3>
-                                <div class="account-number">
-                                    Account Number: 234-5642-8796
-                                </div>
-                            </div>
+<div class="wallet-balance">
+    <div class="cards amount">
+        <!-- Bank details and etc -->
+        <!-- if wallet selected is nigeria, it should only display the account number -->
+        <!-- if wallet selected is not nigeria it should display card options -->
+        <h3>Bank Name: <span><?php echo $bankName; ?></span></h3>
+        <div class="account-number">
+            Account Number: <?php echo $accountNumber; ?>
+        </div>
+    </div>
+</div>
 
-                        </div>
                     </div>
                     <div class="buttons" id="buttons">
-                        <button type="submit" class="form-btn bank-transfer">Bank Transfer</button>
-                        <button type="submit" class="form-btn">p2p</button>
+                        <button type="submit" class="form-btn bank-transfer">card</button>
                     </div>
 
 
@@ -599,7 +600,7 @@ if ($stmt->rowCount() == 1) {
                 </div>
                 <div class="buttons">
                     <button type="submit" class="send-form-btn wallet-to-wallet">Send to wallet</button>
-                    <button type="submit" class="send-form-btn wallet-to-bank">Send to bank</button>
+                    <a href=""><button type="submit" class="send-form-btn wallet-to-bank">Send to bank</button></a>
                 </div>
 
 
@@ -652,149 +653,7 @@ if ($stmt->rowCount() == 1) {
                         <button type="submit" class="form-btn" id="form_btn">Send</button>
                 </form>
             </div>
-
-
-
             <div class="deposits" id="bank-deposit">
-                <div class="add-container-body-top">
-                    <div class="fund-wallet">
-                        <div class="w">
-                            <p><span> </span></p>
-
-                        </div>
-                        <h2></h2>
-                        <p>To send money from wallet to bank account</p>
-                        <!-- open a wallet select options,
-                            show a bank transfer modal box where bank can be selected, account number entered,
-                            amount entered, narration entered, confirmation screen then the procced btn click, 
-                            account password to confirm transaction -->
-                        <label for="select">
-                            Select Wallet
-                            <div class="sel-cont">
-                                <select class="to-bank" id="send-to-bank">
-                                    <option value="select-wallet">Select Wallet</option>
-                                    <option value="Naira">Naira Wallet</option>
-                                    <option value="Dollar">Dollar wallet</option>
-                                    <option value="Pounds">Pounds Wallet</option>
-                                    <option value="Euro">Euro Wallet</option>
-                                    <option value="Yuen">Yuen wallet</option>
-                                </select>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-                <!-- <div class="d-top">
-                        <p>Amount to deposit</p>
-                    </div> -->
-
-                <!-- Paymeny gateway lists -->
-                <!-- Bank details and etc -->
-                <!-- if wallet selected is nigeria, it should only display the account number -->
-                <!-- if wallet selected is not nigeria it should display card options -->
-
-
-                <div id="forms-to-bank">
-
-                    <form id="naira-form" method="post">
-                        <div class="to-b">
-                            <label for="e">Bank Name
-                                <div class="inpt">
-                                    <input type="text" id="bank-name" class=" bottom-border" name="bank-name"
-                                        placeholder="Select Bank">
-                                </div>
-                            </label>
-                            <label for="e">Account Number
-                                <div class="inpt">
-                                    <input type="text" id="acc-num" class=" bottom-border" name="acc-num"
-                                        placeholder="Account Number">
-                                </div>
-                            </label>
-                            <label for="e">Amount
-                                <div class="inpt">
-                                    <input type="text" id="sentVal" class=" bottom-border" name="sentVal"
-                                        placeholder="minimum 100">
-                                </div>
-                            </label>
-
-                            <label for="e">Narration
-                                <div class="inpt">
-                                    <input type="text" id="trans-narr" name="trans-narr"
-                                        placeholder="e.g for school fee">
-                                </div>
-                            </label>
-                        </div>
-                        <!-- the id for the button is going to be for the naira account -->
-                        <button type="submit" class=" form-btn send-form-btn wallet-to-bank"
-                            id="naira-confirm-send">Confirm</button>
-                    </form>
-                </div>
-
-
-
-                <div class="dollar-container" id="dollar-modal">
-
-                    <form action="" id="dollar-form" method="post">
-
-                        <div class="to-b">
-                            <label for="e">Bank Name
-                                <div class="inpt">
-                                    <input type="text" id="bank-name" placeholder="Select Bank">
-                                </div>
-                            </label>
-                            <label for="e">IBAN/Account Number
-                                <div class="inpt">
-                                    <input type="text" id="acc-num" placeholder="Account Number">
-                                </div>
-                            </label>
-                            <label for="e">Account name
-                                <div class="inpt">
-                                    <input type="text" id="acc-name" placeholder="minimum 100">
-                                </div>
-                            </label>
-                            <label for="e">Account type
-                                <!-- dropdown menu -->
-                                <div class="inpt">
-                                    <input type="text" id="acc-name" placeholder="minimum 100">
-                                </div>
-                            </label>
-                            <label for="e">Receipient's email
-                                <div class="inpt">
-                                    <input type="text" id="acc-name" placeholder="minimum 100">
-                                </div>
-                            </label>
-                            <label for="e">Receipient's address
-                                <div class="inpt">
-                                    <input type="text" id="acc-name" placeholder="minimum 100">
-                                </div>
-                            </label>
-                            <label for="e">Receipient's Postal code
-                                <div class="inpt">
-                                    <input type="text" id="acc-name" placeholder="minimum 100">
-                                </div>
-                            </label>
-
-                            <label for="e">Bank routing number/Sort code
-                                <div class="inpt">
-                                    <input type="text" id="trans-narr" placeholder="e.g for school fee">
-                                </div>
-                            </label>
-                            <label for="e">Swift code
-                                <div class="inpt">
-                                    <input type="text" id="sentVal" placeholder="minimum 100">
-                                </div>
-                            </label>
-
-                            <label for="e">Description
-                                <div class="inpt">
-                                    <input type="text" id="trans-narr" placeholder="e.g for school fee">
-                                </div>
-                            </label>
-                        </div>
-                        <button type="submit" class="send-form-btn wallet-to-bank" id="confirm-send">Confirm</button>
-                    </form>
-
-
-                </div>
             </div>
         </div>
 

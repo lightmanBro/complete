@@ -18,9 +18,9 @@
       <div class="proof-head">
         <div class="logo" id="logo">
           <h2><a href="/payment gateway/index.html">
-                  <img src="../img/colorLogo.png" alt="">
-              </a></h2>
-      </div>
+              <img src="../img/colorLogo.png" alt="">
+            </a></h2>
+        </div>
 
         <h3>VERIFY PROOF OF PAYMENT</h3>
       </div>
@@ -31,70 +31,37 @@
             once timer is completed</span></p>
 
       </div>
-
+      <div id="success" class="success" style="background-color: rgb(46, 204, 113); padding:15px;color:white;text-align:center;border-radius:2.5px; display:none;">Successful</div>
+      <div id="failed" class="success" style="background-color: #f95738; padding:15px;color:white;text-align:center;border-radius:2.5px;display:none;">Transaction Failed 😥, possibly Insufficient Balance 🤔</div>
       <div class="proof-upload">
         <p>Please confirm the proof of payment before releasing trade</p>
         <div class="proof-upload-file">
-          <div class="image-container">
+
+          <div class="image-container sell-Confirm">
+            <img id="proofImage" src="" alt="">
           </div>
-          <label for="file-upload" class="custom-file-upload">
-            <input id="file-upload" type="file" hidden />
-          </label>
-          <button id="uploadBtn">Upload proof</button>
         </div>
-      </div>
-      <div class="proof-complete">
-        <!-- <button  id="proof-btn">Complete</button> -->
-        <!-- <button onclick="openModal()">Open Modal</button> -->
-        <div class="content-show" style="display: block;">
+        <div class="proof-complete">
+          <div class="content-show" style="display: block;">
 
-          <div class="popup-b">
-            <div class="payment-method-head">
+            <div class="popup-b">
+              <div class="payment-method-head">
 
-              <h4>Transaction ID: #2187093564 </h4>
-              <h4>Trade Status: Pending </h4>
+                <h4>Transaction Ref: <span id="ref"></span> </h4>
+                <h4>Trade Status: Pending </h4>
+              </div>
+              <!-- Order data stays here -->
+              <div id="orderData">
+
+              </div>
               
-            </div>
-            <div class="payment-method-bank">
-              <div class="name-details">
-                <h4>BANK NAME:</h4>
-                <p>SPRING BANK</p>
+              <div class="proof-btn1">
+                <button id="release_fund" class="dispute-btn">Release Fund</button>
+                <button class="dispute-btn" style="background-color: var(--fail);">Dispute Trade</button>
               </div>
-              <div class="name-details">
-                <h4>ACCNT NAME:</h4>
-                <p>ADEJUYI SAMSON J</p>
-              </div>
-              <div class="name-details">
-                <h4>ACCOUNT NO:</h4>
-                <p>2187093564</p>
-              </div>
-              <div class="name-details">
-                <h4>PURCHASE AMOUNT</h4>
-                <p>$100</p>
-              </div>
-              <div class="name-details">
-                <h4>PURCHASE COST:</h4>
-                <p>&#x20A6;74,000</p>
-              </div>
-              <div class="name-details">
-                <h4>FEE 1%:</h4>
-                <p>$1</p>
-              </div>
-              <div class="name-details">
-                <h4>RECEIVE AMOUNT:</h4>
-                <p>$99.00</p>
-              </div>
-
-            </div>
-
-            <div class="proof-btn1">
-              <button class="dispute-btn">Release Trade</button>
-
-              <a href="../create trade/dispute.html"><button class="dispute-btn" style="background-color: var(--fail);">Dispute Trade</button></a>
             </div>
           </div>
         </div>
-      </div>
 
   </main>
 
@@ -104,7 +71,7 @@
       document.getElementById("myModal").style.display = "block";
     }
   </script>
-  <script src="upload.js"></script>
+  <script src="./script/verify-seller.js"></script>
 </body>
 
 </html>

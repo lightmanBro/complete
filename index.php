@@ -6,7 +6,7 @@ require_once 'server.php';
 $msg = "";
 
 // Check if the form is submitted
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     // Get the form data
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -37,16 +37,17 @@ if(isset($_POST['submit'])){
                     exit();
                 } else {
                     // Set the email in the session
-                        $sql = "SELECT user_id FROM user_credentials WHERE email = :email";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->bindParam(':email', $email);
-                        $stmt->execute();
-                        if ($stmt->rowCount() == 1) { session_start();
-                            $_SESSION['user_id']=$row['user_id'];
-                            $_SESSION['email']=$row['email'];
-                            header("Location: dashboard/index.php");
-                            //print_r($_SESSION['email']." ".$_SESSION['user_id']);
-                        }
+                    $sql = "SELECT user_id FROM user_credentials WHERE email = :email";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':email', $email);
+                    $stmt->execute();
+                    if ($stmt->rowCount() == 1) {
+                        session_start();
+                        $_SESSION['user_id'] = $row['user_id'];
+                        $_SESSION['email'] = $row['email'];
+                        header("Location: dashboard/index.php");
+                        //print_r($_SESSION['email']." ".$_SESSION['user_id']);
+                    }
                     exit();
                 }
             } else {
@@ -80,6 +81,7 @@ if(isset($_POST['submit'])){
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -113,9 +115,9 @@ if(isset($_POST['submit'])){
         footer {
             text-align: center;
             margin-top: 790px;
-            padding:10px;
+            padding: 10px;
             background-color: #f2f2f2;
-            color:#5ea536;
+            color: #5ea536;
             font-weight: bold;
         }
 
@@ -124,35 +126,37 @@ if(isset($_POST['submit'])){
         }
     </style>
 </head>
+
 <body>
-<div id="textbox">
-    <p class="alignleft"><a href="">
-            <img src="./img/colorLogo.png" alt="">
-        </a></p>
-    <a class="alignright-btn" href="register.php"> Create Account </a>
-    <div style="clear: both;"></div>
-</div>
-<div class="form-container">
-    <form action="" method="post">
-        <h3>Login</h3>
-        <div id="message"><?php echo $msg; ?></div>
-        <input type="email" name="email" placeholder="Email" class="box" required>
-        <input type="password" name="password" placeholder="Password" class="box" autocomplete="current-password" required>
-        <button name="submit" class="btn" type="submit">Login</button>
-    </form>
-</div>
-<footer>
-    <p>&copy; <?php echo date('Y'); ?> Your Website. All rights reserved.</p>
-</footer>
-<script src="js/jquery.min.js"></script>
-<script>
-    $(document).ready(function (c) {
-        $('.alert-close').on('click', function (c) {
-            $('.main-mockup').fadeOut('slow', function (c) {
-                $('.main-mockup').remove();
+    <div id="textbox">
+        <p class="alignleft"><a href="">
+                <img src="./img/colorLogo.png" alt="">
+            </a></p>
+        <a class="alignright-btn" href="register.php"> Create Account </a>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="form-container">
+        <form action="" method="post">
+            <h3>Login</h3>
+            <div id="message"><?php echo $msg; ?></div>
+            <input type="email" name="email" placeholder="Email" class="box" required>
+            <input type="password" name="password" placeholder="Password" class="box" autocomplete="current-password" required>
+            <button name="submit" class="btn" type="submit">Login</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; <?php echo date('Y'); ?> Your Website. All rights reserved.</p>
+    </footer>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(c) {
+            $('.alert-close').on('click', function(c) {
+                $('.main-mockup').fadeOut('slow', function(c) {
+                    $('.main-mockup').remove();
+                });
             });
         });
-    });
-</script>
+    </script>
 </body>
+
 </html>

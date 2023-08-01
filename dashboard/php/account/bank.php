@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$accountOwner = $_SESSION['id'];
+$accountOwner = $_SESSION['user_id'];
 $serverName = 'localhost';
 $username = 'root';
 $password = '';

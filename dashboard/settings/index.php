@@ -88,8 +88,65 @@ $submitted = isset($_SESSION['kyc_submitted']) && $_SESSION['kyc_submitted'] ===
   height: auto;
 }
 
+.select-options {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* height: 100vh; */
+      font-family: Arial, sans-serif;
+    }
 
-</style>
+    select {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .select-form {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .select-form > div {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .select-form > div span {
+      font-size: 14px;
+      color: #999;
+      margin-left: 5px;
+    }
+
+    .select-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .select-form input[type="text"],
+    .select-form input[type="email"] {
+      width: 250px;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .select-form button[type="submit"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .select-form button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -151,7 +208,7 @@ $submitted = isset($_SESSION['kyc_submitted']) && $_SESSION['kyc_submitted'] ===
                     <thead>
                         <tr>
                             <th onclick="toggleTable(0)"><i class="fa-regular fa-user"></i><span>Profile</span></th>
-                            <th onclick="toggleTable(01)"><i class="fa-solid fa fa-bank"></i><span>Banks</span></th>
+                            <th id="payment_methods" onclick="toggleTable(01)"><i class="fa-solid fa fa-bank"></i><span>Payment Methods</span></th>
                             <th onclick="toggleTable(1)"><i class="fa-solid fa fa-file"></i><span>KYC Verification</span></th>
                             <th onclick="toggleTable(2)"><i class="fa-solid fa-exchange"></i><span>Referral</span></th>
                             <th onclick="toggleTable(3)"><i class="fa-solid fa-level-up"></i><span>Level</span></th>
@@ -183,13 +240,118 @@ $submitted = isset($_SESSION['kyc_submitted']) && $_SESSION['kyc_submitted'] ===
                     <tr>
                         <td show colspan="5" class="table-content">
                             <div class="table-info">
-                                <form action="bank_details_processing.php" method="post">
-                                    <h3>Bank Details</h3>
-                                    <input type="text" name="bank_name" placeholder="Bank Name" class="box" required>
-                                    <input type="text" name="account_number" placeholder="Account Number" class="box" required>
-                                    <input type="text" name="account_name" placeholder="Account Name" class="box" required>
-                                    <button name="submit" class="btn" type="submit">Save Bank Details</button>
-                                </form>
+                            <div class="select-options">
+    <select id="payment-method-select" onchange="showForm()">
+      <option value="">Select Payment Method</option>
+      <option value="bank">Bank</option>
+      <option value="chipper">Chipper</option>
+      <option value="apple">Apple Pay</option>
+      <option name="momo" value="momo">Mobile money</option>
+      <option name="pi" value="pi">Pi network</option>
+      <option name="paypal" value="paypal">PayPal</option>
+      <option name="skrill" value="skrill">Skrill</option>
+      <option name="googlepay" value="google">Google pay</option>
+      <!-- Add more options here -->
+    </select>
+    <div id="bank-response-message"></div>
+<!-- Bank Details Form -->
+<form id="bank-form" class="select-form" action="submit_bank.php" method="POST">
+    <div>Add Bank Details <span>Note: please use your own details</span></div>
+    <input type="hidden" name="bank" value="bank">
+    <hr>
+    <label for="account-name">Your Name</label>
+    <input type="text" name="account_name" id="account-name">
+    <label for="bank-name">Bank</label>
+    <input type="text" name="bank_name" id="bank-name">
+    <label for="account-number">Account Number <span id="acc-warning">Please enter a valid account number</span></label>
+    <input type="text" name="account_number" id="account-number">
+    <button type="submit" class="acc-btn">Set Bank Details</button>
+</form>
+
+
+<!-- Chipper Cash Details Form -->
+<div id="chipper-form" class="select-form">
+    <form id="chipper_account_settings" action="submit_chipper.php" method="POST">
+        <div>Add Chipper Cash Details <span>Note: please use your own details</span></div>
+        <input type="hidden" name="chipper_acc" value="chipper">
+        <hr>
+        <label for="user-name">Your Name</label>
+        <input type="text" name="user_name" id="user-name">
+        <label for="chipper-mail">Account Number</label>
+        <input type="email" name="chipper_mail" id="chipper-mail">
+        <button type="submit" class="acc-btn">Set Chipper Details</button>
+    </form>
+</div>
+<div id="apple-response-message"></div>
+<!-- Apple Pay Details Form -->
+<div id="apple-form" class="select-form">
+    <form id="apple_pay_account_settings" action="submit_apple.php" method="POST">
+        <div>Add Apple Pay Details <span>Note: please use your own details</span></div>
+        <input type="hidden" name="apple_acc" value="applepay">
+        <hr>
+        <label for="apple-mail">Apple Mail</label>
+        <input type="email" name="apple_mail" id="apple-mail">
+        <button type="submit" class="acc-btn">Set Apple Pay Details</button>
+    </form>
+</div>
+
+    <div id="momo-form" action="submit_bank.php" class="select-form" method="POST">
+      <form id="momo_account_settings">
+        <input type="hidden" name="momo_acc" value="momo">
+        <div>Add Mobile Money Details <span>Note: please use your own details</span></div>
+        <hr>
+        <label for="momo-name">Momo Name</label>
+        <input type="text" name="momo_name" id="momo-name">
+        <label for="momo-number">Momo Number <span id="warning">Please enter a valid momo number</span></label>
+        <input type="text" name="momo_number" id="momo-number">
+        <button type="submit">Set Momo Account</button>
+      </form>
+    </div>
+
+    <div id="pi-form" action="submit_bank.php" class="select-form" method="POST">
+      <form id="pi_account_settings">
+        <input type="hidden" name="pi_wallet" value="pi">
+        <div>Add Pi Network Details <span>Note: please use your own details</span></div>
+        <hr>
+        <label for="wallet-address">Pi (π) Wallet Address</label>
+        <input type="text" name="wallet_address" id="wallet-address">
+        <button type="submit">Set Wallet Address</button>
+      </form>
+    </div>
+
+    <div id="paypal-form" action="submit_bank.php" class="select-form" method="POST">
+      <form id="paypal_account_settings">
+        <input type="hidden" name="paypal_acc" value="paypal">
+        <div>Add PayPal Details <span>Note: please use your own details</span></div>
+        <hr>
+        <label for="paypal-email">PayPal Email</label>
+        <input type="email" name="paypal_email" id="paypal-email">
+        <button type="submit">Set PayPal Address</button>
+      </form>
+    </div>
+
+    <div id="skrill-form" action="submit_bank.php" class="select-form" method="POST">
+      <form id="skrill_account_settings">
+        <input type="hidden" name="skrill_acc" value="skrill">
+        <div>Add Skrill Details <span>Note: please use your own details</span></div>
+        <hr>
+        <label for="skrill-mail">Skrill Mail</label>
+        <input type="email" name="skrill_mail" id="skrill-mail">
+        <button type="submit">Set Skrill Address</button>
+      </form>
+    </div>
+
+    <div id="google-form" action="submit_bank.php" class="select-form" method="POST">
+      <form id="googlepay_account_settings">
+        <input type="hidden" name="google_pay_acc" value="googlepay">
+        <div>Add Google Pay Details <span>Note: please use your own details</span></div>
+        <hr>
+        <label for="google-mail">Google Mail</label>
+        <input type="email" name="google_mail" id="google-mail">
+        <button type="submit">Set Google Mail</button>
+      </form>
+    </div>
+  </div>
                             </div>
                         </td>
                     </tr>
@@ -307,9 +469,11 @@ $submitted = isset($_SESSION['kyc_submitted']) && $_SESSION['kyc_submitted'] ===
                     <tr>
   <td show colspan="5" class="table-content">
     <div class="table-info">
-      <h2>Referral Link</h2>
+     
+      <label for="name" class="label">Referral Link:</label><br><br>
       <div class="referral-box">
-        <span class="referral-link"><?php echo $referral_link; ?></span>
+      <input type="text" name="name" class="referral-link box" value="<?php echo $referral_link; ?>" readonly><br><br>
+        <!-- <span class="referral-link"><?php echo $referral_link; ?></span> -->
         <button class="copy-button" onclick="copyReferralLink()">Copy</button>
         <button class="share-button" onclick="shareReferralLink()">Share</button>
       </div>
@@ -396,6 +560,99 @@ function shareReferralLink() {
     <script src="./forms.js"></script>
     <script src="./userSettings.js"></script>
     <script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- AJAX script for Bank Details Form -->
+<script>
+  $(document).ready(function() {
+    $("#bank-form").submit(function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      
+      $.ajax({
+        type: "POST",
+        url: "submit_bank.php",
+        data: formData,
+        success: function(response) {
+          $("#bank-response-message").html('<p style="color: green;">' + response + '</p>');
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          console.error(errorThrown);
+        }
+      });
+    });
+  });
+</script>
+
+<!-- AJAX script for Chipper Cash Details Form -->
+<script>
+  $(document).ready(function() {
+    $("#chipper_account_settings").submit(function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      
+      $.ajax({
+        type: "POST",
+        url: "submit_chipper.php",
+        data: formData,
+        success: function(response) {
+          $("#chipper-response-message").html('<p style="color: green;">' + response + '</p>');
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          console.error(errorThrown);
+        }
+      });
+    });
+  });
+</script>
+
+<!-- AJAX script for Apple Pay Details Form -->
+<script>
+  $(document).ready(function() {
+    $("#apple_pay_account_settings").submit(function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      
+      $.ajax({
+        type: "POST",
+        url: "submit_apple.php",
+        data: formData,
+        success: function(response) {
+          $("#apple-response-message").html('<p style="color: green;">' + response + '</p>');
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          console.error(errorThrown);
+        }
+      });
+    });
+  });
+</script>
+
+
+    <script>
+    function showForm() {
+      const select = document.getElementById("payment-method-select");
+      const selectedOption = select.options[select.selectedIndex].value;
+
+      const forms = document.getElementsByClassName("select-form");
+      for (let i = 0; i < forms.length; i++) {
+        const form = forms[i];
+        form.style.display = "none";
+      }
+
+      const selectedForm = document.getElementById(selectedOption + "-form");
+      selectedForm.style.display = "block";
+    }
+
+    // Hide all forms initially on page load
+    window.addEventListener("load", function() {
+      const forms = document.getElementsByClassName("select-form");
+      for (let i = 0; i < forms.length; i++) {
+        const form = forms[i];
+        form.style.display = "none";
+      }
+    });
+  </script>
 
 </body>
 

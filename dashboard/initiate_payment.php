@@ -1,51 +1,45 @@
 <?php
-session_start();
+// Use your Flutterwave API keys here
+$secret_key = 'FLWSECK_TEST-f398185cae03e254d43d47b5575057b5-X';
 
-// Check if the user is logged in
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    exit();
-}
+// Retrieve payment details from the form
+$email = $_POST['email'];
+$amount = $_POST['amount'];
 
-// Retrieve the selected currency and amount from the query parameters
-$currency = $_GET['currency'];
-$amount = $_GET['amount'];
-
-// Function to initiate the payment using Flutterwave API
-function initiatePayment($amount, $currency) {
-  // Replace 'YOUR_API_KEY' with your Flutterwave API key
-  $apiKey = 'FLWPUBK_TEST-1ff6e12ef890d663a80c73ec8f0fce26-X';
-
-  // Prepare the payment data
-  $paymentData = array(
-    'tx_ref' => generateTransactionRef(),
-    'amount' => $amount,
-    'currency' => $currency,
-    'redirect_url' => 'http://localhost/wallet/payment_confirmation.php',
-    'meta' => array(
-      'vendor_id' => $_SESSION['user_id']
+// Make the payment request to Flutterwave
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://api.flutterwave.com/v3/charges?type=card",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => json_encode([
+        'tx_ref' => time(),
+        'amount' => $amount,
+        'currency' => 'NGN', // Change to your desired currency code
+        'redirect_url' => 'dashboard/fund_wallet.php/payment-successful',
+        'payment_type' => 'card',
+        'customer' => [
+            'email' => $email,
+        ],
+    ]),
+    CURLOPT_HTTPHEADER => array(
+        "Authorization: Bearer $secret_key",
+        "Content-Type: application/json",
     ),
-    'customer' => array(
-      'email' => $_SESSION['email']
-    ),
-    'customizations' => array(
-      'title' => 'Add Funds to Wallet',
-      'description' => 'Adding funds to your vendor wallet'
-    )
-  );
+));
 
-  // Store the payment data in the session
-  $_SESSION['paymentData'] = $paymentData;
+$response = curl_exec($curl);
+$err = curl_error($curl);
+curl_close($curl);
 
-  // Redirect to your own checkout form to collect card details
-  header('Location: checkout_form.php');
-  exit;
+if ($err) {
+    // Handle payment error
+    echo "Payment failed. Please try again later.";
+} else {
+    // Redirect the user to the payment gateway
+    $response = json_decode($response, true);
+    header("Location: " . $response['data']['link']);
+    exit;
 }
-
-// Function to generate a transaction reference
-function generateTransactionRef() {
-  return 'TXREF-' . uniqid();
-}
-
-// Call the initiatePayment function with the amount and currency
-initiatePayment($amount, $currency);
+echo $response;
+?>

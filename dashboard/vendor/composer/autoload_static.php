@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite13f63ec51efafb60d57899efbecc849
+class ComposerStaticInit77247c27142e2377c0640b24b95ec5f5
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -103,7 +103,6 @@ class ComposerStaticInite13f63ec51efafb60d57899efbecc849
         'Flutterwave\\' => 
         array (
             0 => __DIR__ . '/..' . '/flutterwavedev/flutterwave-v3/src',
-            1 => __DIR__ . '/..' . '/flutterwavedev/flutterwave-v3/src',
         ),
         'Dotenv\\' => 
         array (
@@ -123,9 +122,9 @@ class ComposerStaticInite13f63ec51efafb60d57899efbecc849
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite13f63ec51efafb60d57899efbecc849::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite13f63ec51efafb60d57899efbecc849::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite13f63ec51efafb60d57899efbecc849::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit77247c27142e2377c0640b24b95ec5f5::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit77247c27142e2377c0640b24b95ec5f5::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit77247c27142e2377c0640b24b95ec5f5::$classMap;
 
         }, null, ClassLoader::class);
     }

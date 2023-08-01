@@ -28,20 +28,24 @@
         <p>Note: <span>Failure to Upload transaction proof will result in authomatic canceling of the transaction</span>
         </p>
       </div>
+      <div id="success" class="success" style="background-color: rgb(46, 204, 113); padding:15px;color:white;text-align:center;border-radius:2.5px; display:none;">Successfuly Uploaded</div>
+      <div id="failed" class="success" style="background-color: #f95738; padding:15px;color:white;text-align:center;border-radius:2.5px;display:none;">Upload Failed</div>
       <div class="proof-upload">
         <p>Please Upload the paid receipt for this transaction to be completed</p>
         <div class="proof-upload-file">
-          <label for="file-upload" class="custom-file-upload">
-            <img src="" alt="Upload" />
+          <label for="file-upload" class="custom-file-upload image-container">
+            
           </label>
-          <input id="file-upload" type="file" name="file" required />
+          <input id="file-upload" type="file"  accept="image/jpeg"/>
         </div>
       </div>
       <div class="proof-complete">
         <div class="proof-complete-btn">
 
-          <button onclick="openModal()" class="dispute-btn"
-            style="background-color: var(--main-color);">Complete</button>
+          <button id="modalbtn" onclick="openModal()" class="dispute-btn"
+            style="background-color: var(--main-color);" hidden>Complete</button>
+            <button id="uploadBtn" class="dispute-btn"
+            style="background-color: var(--main-color);">Upload</button>
         </div>
         <!-- <button onclick="openModal()">Open Modal</button> -->
         <div class="content-show" id="myModal">
@@ -49,43 +53,15 @@
           <div class="popup-b">
             <div class="payment-method-head">
 
-              <h4>Transaction ID: #2187093564 </h4>
+              <h4>Order Ref <span id="ref"></span> </h4>
               <h4>Trade Status: Pending </h4>
-              <!-- <select name="" id="payment-method1">
-                                                        <option value="">BANK PAYMENT</option>
-                                                        <option value="">CHIPPER CASH</option>
-                                                        <option value="">PI NETWORK</option>
-                                              </select> -->
             </div>
-            <div class="payment-method-bank">
-              <div class="name-details">
-                <h4>BANK NAME:</h4>
-                <p>SPRING BANK</p>
-              </div>
-              <div class="name-details">
-                <h4>ACCNT NAME:</h4>
-                <p>ADEJUYI SAMSON J</p>
-              </div>
-              <div class="name-details">
-                <h4>ACCOUNT NO:</h4>
-                <p>2187093564</p>
-              </div>
-              <div class="name-details">
-                <h4>PURCHASE AMOUNT</h4>
-                <p>$100</p>
-              </div>
-              <div class="name-details">
-                <h4>PURCHASE COST:</h4>
-                <p>&#x20A6;74,000</p>
-              </div>
-              <div class="name-details">
-                <h4>FEE 1%:</h4>
-                <p>$1</p>
-              </div>
-              <div class="name-details">
-                <h4>RECEIVE AMOUNT:</h4>
-                <p>$99.00</p>
-              </div>
+            <!-- The buy order data will be displayed here -->
+            <div id="orderData">
+
+            </div>
+            
+            
               <div class="btn-proceed">
                 <button>Summon Seller</button>
               </div>
@@ -114,5 +90,6 @@
       document.getElementById("myModal1").style.display = "block";
     }
   </script>
+  <script src="./script/upload.js"></script>
 </body>
 </html>

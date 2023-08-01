@@ -1,8 +1,5 @@
 // code to toggle the button //
 /*
-1. Retrieve data from the database and use it here.
-2. Active trades from the database will be displayed inside the active modal which can be cancelled.
-3. Other trades will be shown here.
 
 */
 

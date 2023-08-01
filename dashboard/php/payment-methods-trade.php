@@ -1,11 +1,8 @@
 <?php
 
 // .
-session_start();
-$serverName = 'localhost';
-$username = 'root';
-$password = '';
-$databaseName = 'register';
+// session_start();
+include('server.php');
 $conn = new mysqli($serverName,$username,$password,$databaseName);
 
 // Include the configuration file that contains database credentials
